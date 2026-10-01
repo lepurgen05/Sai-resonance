@@ -1,1264 +1,834 @@
 /* =========================================================
    SAI RESONANCE
-   COMPLETE script.js
+   Main JavaScript
 ========================================================= */
 
 
 /* =========================================================
-   108 DAILY CHITS
+   108 DAILY CARDS
 ========================================================= */
 
 const CARDS = [
 
-  {
-    title: "I am with you.",
-    text: "Whatever the day brings, remember that you do not have to carry every burden alone.",
-    category: "Daily Chit"
-  },
-
-  {
-    title: "I am watching you.",
-    text: "Let this be a reminder to live with awareness, honesty and love.",
-    category: "Daily Chit"
-  },
-
-  {
-    title: "You are Mine.",
-    text: "A reminder of belonging, love and the feeling that you are never forgotten.",
-    category: "Daily Chit"
-  },
-
-  {
-    title: "I am always with you.",
-    text: "When the mind becomes restless, return to faith and calmness.",
-    category: "Daily Chit"
-  },
-
-  {
-    title: "Do not be afraid.",
-    text: "Face the moment before you with courage, patience and faith.",
-    category: "Daily Chit"
-  },
-
-  {
-    title: "Why fear when I am here?",
-    text: "Let fear become an invitation to remember courage and trust.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be peaceful.",
-    text: "Peace begins when we stop fighting every thought that passes through the mind.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be patient.",
-    text: "Not everything has to happen today. Give life the time it needs.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Love All.",
-    text: "Let your words and actions make someone's day a little lighter.",
-    category: "Teaching"
-  },
-
-  {
-    title: "Serve All.",
-    text: "Service becomes meaningful when it is offered without expecting recognition.",
-    category: "Teaching"
-  },
-
-  {
-    title: "Help Ever.",
-    text: "Whenever you can genuinely help, do so with humility.",
-    category: "Teaching"
-  },
-
-  {
-    title: "Hurt Never.",
-    text: "Before speaking, ask whether your words will heal or hurt.",
-    category: "Teaching"
-  },
-
-  {
-    title: "Speak softly.",
-    text: "Gentleness is not weakness. Sometimes the softest words carry the greatest strength.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Listen first.",
-    text: "Understanding another person begins with listening without immediately judging.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be truthful.",
-    text: "Truth gives the mind a place to stand when everything else becomes uncertain.",
-    category: "Teaching"
-  },
-
-  {
-    title: "Be kind.",
-    text: "A small act of kindness may remain in someone's heart much longer than you expect.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Forgive.",
-    text: "Forgiveness can release the heart from carrying yesterday into today.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Remember love.",
-    text: "When there is confusion, return to the simplest question: what would love do?",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do your duty.",
-    text: "Give sincere attention to the responsibility that is in front of you.",
-    category: "Teaching"
-  },
-
-  {
-    title: "Work with love.",
-    text: "Even ordinary work can become meaningful when done with sincerity.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not compare.",
-    text: "Your journey does not need to look like someone else's journey.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be grateful.",
-    text: "Notice what is already present before worrying about what is still missing.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Keep faith.",
-    text: "Faith does not remove every difficulty, but it can change the way we walk through it.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Stay humble.",
-    text: "Let achievement make you grateful rather than distant from others.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Control the tongue.",
-    text: "A moment of silence can prevent a sentence that takes much longer to repair.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Control the mind.",
-    text: "Do not believe every thought simply because it appears in your mind.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Choose peace.",
-    text: "Not every argument deserves your energy.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be cheerful.",
-    text: "A cheerful heart can make difficult work feel lighter.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Think before you speak.",
-    text: "Words leave traces. Choose them carefully.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Give without pride.",
-    text: "The value of giving grows when the giver does not demand applause.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Serve quietly.",
-    text: "Goodness does not always need an audience.",
-    category: "Reflection"
-  },
-
-  {
-    title: "See the good.",
-    text: "Train yourself to notice goodness even in ordinary moments.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not lose hope.",
-    text: "A difficult chapter is not necessarily the end of the story.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Trust the journey.",
-    text: "Some answers become clear only after we have travelled farther.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Pray with sincerity.",
-    text: "Let prayer become a quiet conversation of the heart.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Make your heart pure.",
-    text: "Watch your intentions as carefully as you watch your actions.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Let go of anger.",
-    text: "Anger may feel powerful for a moment, but peace has a longer memory.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Choose understanding.",
-    text: "Before deciding what someone meant, try to understand what they experienced.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not seek praise.",
-    text: "Let the goodness of an action be enough reason to do it.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be useful.",
-    text: "Ask how your presence can make a situation better.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Respect everyone.",
-    text: "Every person carries a story you may know nothing about.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Keep learning.",
-    text: "Wisdom grows when knowledge is combined with experience and reflection.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Practise what you learn.",
-    text: "Knowledge becomes meaningful when it changes the way we live.",
-    category: "Teaching"
-  },
-
-  {
-    title: "Be disciplined.",
-    text: "Small acts of discipline repeated every day can shape an entire life.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Begin again.",
-    text: "A mistake does not prevent you from making a better choice now.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not give up.",
-    text: "Continue taking the next right step, even when the destination feels distant.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Keep your heart open.",
-    text: "Do not allow one painful experience to close the door to every good experience.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be sincere.",
-    text: "Let your inner intention and outer action move in the same direction.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be responsible.",
-    text: "Freedom becomes meaningful when it is accompanied by responsibility.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Respect your parents.",
-    text: "Gratitude begins by remembering the people who helped us become who we are.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Respect your teachers.",
-    text: "Learning becomes deeper when we remain humble before those who guide us.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Use your time well.",
-    text: "Time spent with purpose quietly becomes a meaningful life.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do one good thing.",
-    text: "You do not need a grand opportunity to practise goodness.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Smile.",
-    text: "Sometimes a simple smile can tell another person that they are welcome.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be compassionate.",
-    text: "Compassion begins when another person's difficulty matters to us.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not judge quickly.",
-    text: "A person may be fighting a battle that you cannot see.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Give another chance.",
-    text: "People can learn, change and begin again.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Keep your promises.",
-    text: "Trust is built slowly through small acts of reliability.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be courageous.",
-    text: "Courage is sometimes simply doing what is right despite fear.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Choose truth over convenience.",
-    text: "The easier choice is not always the honest one.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Stay calm.",
-    text: "A calm mind sees possibilities that panic can hide.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Take a breath.",
-    text: "Pause before reacting. A few seconds can change the direction of a conversation.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not carry yesterday.",
-    text: "Learn from yesterday, but allow today to be new.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Look within.",
-    text: "Before trying to change everything outside you, examine what is happening within.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Simplify.",
-    text: "A simpler life can leave more room for what truly matters.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be content.",
-    text: "Contentment is not the absence of ambition; it is freedom from endless dissatisfaction.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Give thanks.",
-    text: "Gratitude changes attention from what is missing to what is meaningful.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Choose love over ego.",
-    text: "When ego demands to win, love asks what will actually heal the situation.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not respond in anger.",
-    text: "Delay the response until your mind becomes quieter.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be a good example.",
-    text: "People often learn more from what we practise than from what we preach.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Respect differences.",
-    text: "Different paths and perspectives do not require disrespect.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Serve where you are.",
-    text: "You do not need to wait for a perfect opportunity to be helpful.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Care for the weak.",
-    text: "A compassionate society is measured by how it treats those who need support.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Share what you know.",
-    text: "Knowledge becomes more valuable when it helps another person grow.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not waste food.",
-    text: "Respecting food is one simple way of respecting the effort and resources behind it.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Respect nature.",
-    text: "The world around us is not merely something to consume.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Keep your surroundings clean.",
-    text: "Outer cleanliness can support inner discipline and respect for others.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be honest with yourself.",
-    text: "Self-awareness begins when we stop making excuses for everything we do.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Accept correction.",
-    text: "A sincere correction can become a gift when received without unnecessary pride.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Learn from mistakes.",
-    text: "A mistake becomes useful when it teaches us how to choose differently next time.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not chase recognition.",
-    text: "Let your work have value even when nobody notices it.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Keep your word.",
-    text: "Integrity is built through the promises we quietly keep.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be generous in spirit.",
-    text: "Generosity is not only about money; it can be time, attention, patience or kindness.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Listen to the lonely.",
-    text: "Sometimes what another person needs most is simply someone willing to listen.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not make fun of another's weakness.",
-    text: "Kindness protects dignity.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Speak words that heal.",
-    text: "Use your voice to build bridges rather than deepen wounds.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be patient with yourself.",
-    text: "Growth rarely happens in a straight line.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not be jealous.",
-    text: "Another person's success does not reduce the possibility of your own growth.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Celebrate another's success.",
-    text: "A generous heart can be happy when another person flourishes.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be steady.",
-    text: "Do not let every compliment lift you or every criticism destroy you.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Remember your purpose.",
-    text: "When distractions multiply, return to the reason you began.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Keep going quietly.",
-    text: "Progress does not always make noise.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Choose gratitude before complaint.",
-    text: "A grateful mind notices possibilities that constant complaint can hide.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be present.",
-    text: "The moment in front of you deserves some of your attention.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Do not overthink everything.",
-    text: "Some things become clearer after a little silence and rest.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Rest when needed.",
-    text: "Rest is not failure. Even the mind needs space to recover.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Choose simplicity.",
-    text: "You may discover that you need less than you once believed.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be faithful to good values.",
-    text: "Values matter most when keeping them becomes inconvenient.",
-    category: "Teaching"
-  },
-
-  {
-    title: "Let actions speak.",
-    text: "Character is revealed through what we repeatedly do.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Love without calculation.",
-    text: "Love becomes freer when it is not constantly measuring what it receives back.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Serve without expectation.",
-    text: "Offer help because it is right, not merely because you expect something in return.",
-    category: "Teaching"
-  },
-
-  {
-    title: "Remember the Divine.",
-    text: "Create a small moment of remembrance in the middle of your ordinary day.",
-    category: "Reflection"
-  },
-
-  {
-    title: "You are not alone.",
-    text: "When life feels heavy, pause, breathe and remember that support can come through people, faith and love.",
-    category: "Reflection"
-  },
-
-  {
-    title: "I am near.",
-    text: "Let the thought of divine nearness bring quietness rather than fear.",
-    category: "Reflection"
-  },
-
-  {
-    title: "I know your heart.",
-    text: "Let your inner life become honest, peaceful and sincere.",
-    category: "Reflection"
-  },
-
-  {
-    title: "I have not forgotten you.",
-    text: "When an answer seems delayed, allow patience to remain beside faith.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Walk with faith.",
-    text: "You may not see the entire road, but you can still take the next step.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Keep your heart peaceful.",
-    text: "Protect your inner peace from unnecessary anger, comparison and fear.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Love is the answer.",
-    text: "When choices become complicated, return to compassion, truth and selfless action.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Begin today.",
-    text: "You do not have to wait for tomorrow to practise a better way of living.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Let goodness grow.",
-    text: "A small good habit repeated every day can become part of your character.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Be the light for someone.",
-    text: "Your patience, kindness or encouragement may be exactly what someone needs today.",
-    category: "Reflection"
-  },
-
-  {
-    title: "Return to love.",
-    text: "Whenever the mind wanders into anger or fear, gently return to love.",
-    category: "Reflection"
-  }
+    {
+        title: "I am with you",
+        text: "Let the thought of divine companionship become a reminder to walk through the day with courage and love.",
+        category: "Presence"
+    },
+
+    {
+        title: "I am watching you",
+        text: "Let your actions be worthy even when nobody else is watching.",
+        category: "Awareness"
+    },
+
+    {
+        title: "You are Mine",
+        text: "Remember that belonging can be expressed through love, responsibility and trust.",
+        category: "Love"
+    },
+
+    {
+        title: "Be peaceful",
+        text: "Before answering, pause. A peaceful mind often sees what an agitated mind misses.",
+        category: "Peace"
+    },
+
+    {
+        title: "Speak truth",
+        text: "Let your words become a reflection of sincerity rather than a weapon against another.",
+        category: "Truth"
+    },
+
+    {
+        title: "Serve quietly",
+        text: "Do good without waiting for applause. Service becomes beautiful when the ego becomes smaller.",
+        category: "Service"
+    },
+
+    {
+        title: "Love everyone",
+        text: "Try to see the human being before seeing the difference.",
+        category: "Love"
+    },
+
+    {
+        title: "Help ever",
+        text: "Look for one small opportunity today to make another person's burden lighter.",
+        category: "Service"
+    },
+
+    {
+        title: "Hurt never",
+        text: "Before speaking or acting, ask whether your action will unnecessarily cause pain.",
+        category: "Compassion"
+    },
+
+    {
+        title: "Remember the Divine",
+        text: "A few moments of sincere remembrance can change the direction of an entire day.",
+        category: "Devotion"
+    },
+
+    {
+        title: "Do your duty",
+        text: "Give honest attention to the responsibility in front of you.",
+        category: "Dharma"
+    },
+
+    {
+        title: "Let go of anger",
+        text: "Anger may arrive quickly, but you can choose not to give it the final word.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Choose patience",
+        text: "Not every answer has to be immediate. Sometimes wisdom needs silence first.",
+        category: "Peace"
+    },
+
+    {
+        title: "See the good",
+        text: "Train the mind to notice goodness even when circumstances are difficult.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Be grateful",
+        text: "Gratitude turns ordinary things into reminders of how much has already been given.",
+        category: "Reflection"
+    },
+
+    {
+        title: "Forgive",
+        text: "Forgiveness does not erase what happened; it can prevent the past from controlling the present.",
+        category: "Compassion"
+    },
+
+    {
+        title: "Walk the right path",
+        text: "When choices are confusing, ask which action preserves truth, dignity and compassion.",
+        category: "Dharma"
+    },
+
+    {
+        title: "Keep the mind clean",
+        text: "What you repeatedly think about eventually shapes how you speak and act.",
+        category: "Awareness"
+    },
+
+    {
+        title: "Be humble",
+        text: "Knowledge becomes more beautiful when it produces humility rather than pride.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Give without fear",
+        text: "Generosity begins when we stop calculating every act of kindness.",
+        category: "Service"
+    },
+
+    {
+        title: "Love is strength",
+        text: "Compassion does not make a person weak. It can give courage a human face.",
+        category: "Love"
+    },
+
+    {
+        title: "Do not compare",
+        text: "Another person's journey cannot be used as the ruler for your own.",
+        category: "Peace"
+    },
+
+    {
+        title: "Be honest with yourself",
+        text: "Self-understanding begins when we stop hiding from our own motives.",
+        category: "Truth"
+    },
+
+    {
+        title: "Listen",
+        text: "Sometimes the most loving response is not an answer but attentive listening.",
+        category: "Love"
+    },
+
+    {
+        title: "Make your work worship",
+        text: "Bring sincerity and care into ordinary work instead of waiting for extraordinary moments.",
+        category: "Dharma"
+    },
+
+    {
+        title: "Control the tongue",
+        text: "Words cannot be taken back easily. Let speech pass through kindness before it reaches another person.",
+        category: "Awareness"
+    },
+
+    {
+        title: "Choose kindness",
+        text: "A small act of kindness can remain in another person's memory long after the moment has passed.",
+        category: "Compassion"
+    },
+
+    {
+        title: "Faith needs practice",
+        text: "Let what you believe gradually become visible in how you live.",
+        category: "Devotion"
+    },
+
+    {
+        title: "Be useful",
+        text: "Ask not only what you can receive from a situation, but what good you can contribute.",
+        category: "Service"
+    },
+
+    {
+        title: "Keep going",
+        text: "Difficult days do not define the whole journey.",
+        category: "Courage"
+    },
+
+    {
+        title: "Silence can teach",
+        text: "When the mind becomes quiet, small truths that were hidden by noise can become visible.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Do not repay hurt with hurt",
+        text: "Breaking a cycle of anger may begin with one person choosing not to continue it.",
+        category: "Compassion"
+    },
+
+    {
+        title: "Truth needs courage",
+        text: "Speaking truth responsibly sometimes requires more courage than speaking loudly.",
+        category: "Truth"
+    },
+
+    {
+        title: "Respect every person",
+        text: "Respect need not depend on agreement.",
+        category: "Love"
+    },
+
+    {
+        title: "Remember your purpose",
+        text: "When distractions multiply, return to the reason behind your work and your life.",
+        category: "Reflection"
+    },
+
+    {
+        title: "Be content",
+        text: "Contentment is not the end of ambition; it is freedom from endless dissatisfaction.",
+        category: "Peace"
+    },
+
+    {
+        title: "Serve where you stand",
+        text: "You do not always need a grand opportunity to be useful.",
+        category: "Service"
+    },
+
+    {
+        title: "See unity",
+        text: "Differences can exist without destroying the deeper human bond between people.",
+        category: "Love"
+    },
+
+    {
+        title: "Study deeply",
+        text: "Reading becomes meaningful when knowledge changes the way we understand and live.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Keep faith during uncertainty",
+        text: "When you cannot see the whole path, take the next honest step.",
+        category: "Devotion"
+    },
+
+    {
+        title: "Do not be ruled by fear",
+        text: "Fear may warn you, but it does not have to make every decision for you.",
+        category: "Courage"
+    },
+
+    {
+        title: "Be disciplined",
+        text: "Small acts repeated consistently can become stronger than occasional bursts of effort.",
+        category: "Dharma"
+    },
+
+    {
+        title: "Think before reacting",
+        text: "A pause between emotion and action can protect relationships and preserve dignity.",
+        category: "Awareness"
+    },
+
+    {
+        title: "Give respect to elders",
+        text: "Wisdom often travels through generations. Listen before deciding that an old lesson has no value.",
+        category: "Respect"
+    },
+
+    {
+        title: "Do not waste food",
+        text: "Respect for food can become a simple daily practice of gratitude and responsibility.",
+        category: "Awareness"
+    },
+
+    {
+        title: "Avoid waste",
+        text: "Use resources carefully and remember those who have less.",
+        category: "Service"
+    },
+
+    {
+        title: "Keep promises",
+        text: "Trust grows when words and actions meet.",
+        category: "Truth"
+    },
+
+    {
+        title: "Learn from mistakes",
+        text: "A mistake can become a teacher when we are willing to examine it honestly.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Do not carry yesterday everywhere",
+        text: "Learn from the past without making it the permanent address of the mind.",
+        category: "Peace"
+    },
+
+    {
+        title: "Let love guide speech",
+        text: "The same truth can be delivered with cruelty or compassion. Choose compassion.",
+        category: "Love"
+    },
+
+    {
+        title: "Be responsible",
+        text: "Spiritual growth is not separate from the way we handle ordinary responsibilities.",
+        category: "Dharma"
+    },
+
+    {
+        title: "Keep your heart soft",
+        text: "Do not let disappointment turn into permanent hardness.",
+        category: "Compassion"
+    },
+
+    {
+        title: "Respect nature",
+        text: "The world around us is not merely a resource. Treat it with care.",
+        category: "Service"
+    },
+
+    {
+        title: "Do not seek praise",
+        text: "Good work remains good even when nobody applauds.",
+        category: "Humility"
+    },
+
+    {
+        title: "Practice what you learn",
+        text: "Knowledge becomes wisdom when it moves from the page into life.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Be truthful in small things",
+        text: "Integrity is built through ordinary choices, not only dramatic moments.",
+        category: "Truth"
+    },
+
+    {
+        title: "Protect another's dignity",
+        text: "Even when correcting someone, avoid humiliating them.",
+        category: "Compassion"
+    },
+
+    {
+        title: "Do not judge quickly",
+        text: "A person's visible action rarely reveals the whole story behind it.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Make time for reflection",
+        text: "A few quiet minutes can reveal what a busy day hides.",
+        category: "Reflection"
+    },
+
+    {
+        title: "Be cheerful",
+        text: "A gentle smile can become a small form of service.",
+        category: "Love"
+    },
+
+    {
+        title: "Do not give up on people",
+        text: "Change can take time. Leave room for growth.",
+        category: "Compassion"
+    },
+
+    {
+        title: "Respect all faiths",
+        text: "Spiritual understanding grows when we learn to respect sincere paths of faith.",
+        category: "Unity"
+    },
+
+    {
+        title: "See service as responsibility",
+        text: "Helping others need not wait for a special occasion.",
+        category: "Service"
+    },
+
+    {
+        title: "Keep learning",
+        text: "A sincere seeker remains willing to learn, unlearn and learn again.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Use wealth wisely",
+        text: "Material resources can become instruments of good when used responsibly.",
+        category: "Dharma"
+    },
+
+    {
+        title: "Avoid unnecessary desire",
+        text: "Ask whether every desire truly deserves your time, money and attention.",
+        category: "Contentment"
+    },
+
+    {
+        title: "Be gentle with children",
+        text: "The way adults treat children becomes part of the world children learn to create.",
+        category: "Love"
+    },
+
+    {
+        title: "Respect teachers",
+        text: "A teacher offers more than information; good teaching can shape character.",
+        category: "Education"
+    },
+
+    {
+        title: "Education should transform",
+        text: "Learning has deeper value when it develops character as well as knowledge.",
+        category: "Education"
+    },
+
+    {
+        title: "Let action follow values",
+        text: "Values become real only when they influence decisions.",
+        category: "Dharma"
+    },
+
+    {
+        title: "Pray with sincerity",
+        text: "Prayer need not be complicated. Sincerity is more important than display.",
+        category: "Devotion"
+    },
+
+    {
+        title: "Remember the inner self",
+        text: "Spend some time looking inward rather than constantly measuring the outside world.",
+        category: "Reflection"
+    },
+
+    {
+        title: "Be careful with criticism",
+        text: "Correction can help; humiliation rarely does.",
+        category: "Compassion"
+    },
+
+    {
+        title: "Choose cooperation",
+        text: "Many problems become smaller when people stop competing over ego.",
+        category: "Unity"
+    },
+
+    {
+        title: "Do not let success inflate you",
+        text: "Success is an opportunity to become more responsible, not less humble.",
+        category: "Humility"
+    },
+
+    {
+        title: "Do not let failure define you",
+        text: "Failure can be an event without becoming an identity.",
+        category: "Courage"
+    },
+
+    {
+        title: "Be patient with yourself",
+        text: "Growth is rarely a straight line.",
+        category: "Peace"
+    },
+
+    {
+        title: "Give your best",
+        text: "Your responsibility is the sincerity of your effort, not control over every outcome.",
+        category: "Dharma"
+    },
+
+    {
+        title: "Be mindful of intention",
+        text: "Two actions can look similar while coming from very different intentions.",
+        category: "Awareness"
+    },
+
+    {
+        title: "Choose peace over ego",
+        text: "Not every disagreement deserves to become a battle.",
+        category: "Peace"
+    },
+
+    {
+        title: "Remember gratitude",
+        text: "Before asking for more, notice what is already present.",
+        category: "Gratitude"
+    },
+
+    {
+        title: "Give people another chance",
+        text: "When appropriate, allow room for sincere correction and growth.",
+        category: "Compassion"
+    },
+
+    {
+        title: "Keep company with goodness",
+        text: "The people and ideas around us influence the direction of the mind.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Use technology wisely",
+        text: "Tools should serve human purpose rather than consume every moment of attention.",
+        category: "Awareness"
+    },
+
+    {
+        title: "Protect your attention",
+        text: "What receives your attention repeatedly becomes part of your inner world.",
+        category: "Awareness"
+    },
+
+    {
+        title: "Do not confuse information with wisdom",
+        text: "Knowing many facts is different from knowing how to live well.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Remember the value of simplicity",
+        text: "A simple life can create space for deeper thought and genuine relationships.",
+        category: "Contentment"
+    },
+
+    {
+        title: "Be compassionate to the lonely",
+        text: "Sometimes presence itself is a form of service.",
+        category: "Love"
+    },
+
+    {
+        title: "Help without humiliating",
+        text: "True assistance preserves the dignity of the person receiving it.",
+        category: "Service"
+    },
+
+    {
+        title: "Use your words carefully",
+        text: "Words can build a bridge or create a wound.",
+        category: "Truth"
+    },
+
+    {
+        title: "Do not be arrogant about knowledge",
+        text: "The more we learn, the more we can recognize how much remains unknown.",
+        category: "Humility"
+    },
+
+    {
+        title: "Remember that character matters",
+        text: "What you repeatedly do becomes part of who you become.",
+        category: "Dharma"
+    },
+
+    {
+        title: "Keep the home peaceful",
+        text: "The spiritual atmosphere of a home is built through ordinary words and actions.",
+        category: "Peace"
+    },
+
+    {
+        title: "Respect differences",
+        text: "Unity does not require everyone to look, think or worship in exactly the same way.",
+        category: "Unity"
+    },
+
+    {
+        title: "Do not spread gossip",
+        text: "If a story does not help, heal or inform responsibly, consider leaving it unspoken.",
+        category: "Awareness"
+    },
+
+    {
+        title: "Be trustworthy",
+        text: "Let people feel safe with your words, commitments and actions.",
+        category: "Truth"
+    },
+
+    {
+        title: "Remember that service begins nearby",
+        text: "Look around you. The first opportunity to help may already be present.",
+        category: "Service"
+    },
+
+    {
+        title: "Let devotion become conduct",
+        text: "The value of devotion is reflected in how it changes daily behaviour.",
+        category: "Devotion"
+    },
+
+    {
+        title: "Choose understanding",
+        text: "Before deciding what someone meant, make an effort to understand their perspective.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Do not lose hope",
+        text: "Even a long night eventually gives way to another morning.",
+        category: "Courage"
+    },
+
+    {
+        title: "Keep the mind steady",
+        text: "Circumstances change. Practice returning the mind to steadiness.",
+        category: "Peace"
+    },
+
+    {
+        title: "Let kindness become habit",
+        text: "A single good act is wonderful; a life shaped by goodness is deeper.",
+        category: "Love"
+    },
+
+    {
+        title: "Be a source of peace",
+        text: "Wherever you go, try to reduce unnecessary conflict rather than increase it.",
+        category: "Peace"
+    },
+
+    {
+        title: "Remember the lesson",
+        text: "A story is not complete when it ends. Its real test begins when we apply its lesson.",
+        category: "Wisdom"
+    },
+
+    {
+        title: "Serve with humility",
+        text: "Service becomes purer when the desire for recognition becomes smaller.",
+        category: "Service"
+    },
+
+    {
+        title: "Keep truth and love together",
+        text: "Truth without compassion can wound; compassion without truth can mislead. Seek both.",
+        category: "Truth"
+    },
+
+    {
+        title: "Return to the heart",
+        text: "When the mind becomes crowded, return to the simple question: what is the loving thing to do?",
+        category: "Love"
+    }
 
 ];
 
 
 /* =========================================================
-   DAILY PICK LIMIT
-   3 EXTRA PICKS PER DAY
+   VERIFY 108
 ========================================================= */
 
-const DAILY_PICK_LIMIT = 3;
-
-const PICK_STORAGE_KEY =
-  "sai_resonance_daily_chit_picks";
+console.log("Sai Resonance cards:", CARDS.length);
 
 
-function getTodayString() {
+/* =========================================================
+   VAHINI LIBRARY
+========================================================= */
 
-  const now = new Date();
+const VAHINIS = [
 
-  return [
-    now.getFullYear(),
-    String(now.getMonth() + 1).padStart(2, "0"),
-    String(now.getDate()).padStart(2, "0")
-  ].join("-");
+    {
+        number: 1,
+        title: "Bhagavatha Vahini",
+        subtitle: "The story of the glory of the Lord",
+        summary:
+            "Sri Sathya Sai Baba's retelling of the Srimad Bhagavatam, with special attention to the story of Krishna and the spiritual journey of King Parikshith.",
+        url:
+            "https://www.sathyasai.org/teachings/vahini"
+    },
 
-}
+    {
+        number: 2,
+        title: "Dharma Vahini",
+        subtitle: "The path of right action",
+        summary:
+            "A study of dharma and right conduct, including family life, education, social responsibilities and the inner basis of righteous action.",
+        url:
+            "https://www.sathyasai.org/teachings/vahini/dharma-vahini"
+    },
 
+    {
+        number: 3,
+        title: "Dhyana Vahini",
+        subtitle: "The stream of meditation",
+        summary:
+            "Guidance concerning meditation, concentration and the inward discipline through which the seeker turns attention toward the inner Self.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
-function getPickData() {
+    {
+        number: 4,
+        title: "Geetha Vahini",
+        subtitle: "The divine gospel",
+        summary:
+            "Reflections on the Bhagavad Gita and its teachings concerning duty, devotion, knowledge, action and the spiritual purpose of human life.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
-  const today =
-    getTodayString();
+    {
+        number: 5,
+        title: "Jnana Vahini",
+        subtitle: "The stream of spiritual wisdom",
+        summary:
+            "A collection of teachings on spiritual knowledge, the Self, devotion, wisdom and the movement from intellectual understanding toward direct insight.",
+        url:
+            "https://www.sathyasai.org/teachings/vahini/jnana-vahini"
+    },
 
-  const saved =
-    localStorage.getItem(
-      PICK_STORAGE_KEY
-    );
+    {
+        number: 6,
+        title: "Leela Kaivalya Vahini",
+        subtitle: "The cosmic play of the Divine",
+        summary:
+            "A series of questions and answers addressing spiritual concepts and difficulties faced by the seeker, drawing on the Vedas and Upanishads.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
+    {
+        number: 7,
+        title: "Prasanthi Vahini",
+        subtitle: "The stream of supreme peace",
+        summary:
+            "Reflections on Prasanthi, or supreme peace, and the inner transformation required to move beyond restlessness toward spiritual calm.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
-  if (!saved) {
+    {
+        number: 8,
+        title: "Prasnothara Vahini",
+        subtitle: "Questions and answers",
+        summary:
+            "A handbook-style collection addressing questions related to spiritual life, offering guidance for the seeker's journey toward God.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
-    const freshData = {
-      date: today,
-      used: 0
-    };
+    {
+        number: 9,
+        title: "Prema Vahini",
+        subtitle: "The stream of divine love",
+        summary:
+            "An exploration of divine love and its place in spiritual life. The work presents love as a central principle of transformation.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
-    localStorage.setItem(
-      PICK_STORAGE_KEY,
-      JSON.stringify(freshData)
-    );
+    {
+        number: 10,
+        title: "Ramakatha Rasavahini — Part I",
+        subtitle: "The stream of sacred sweetness",
+        summary:
+            "The first part of Sri Sathya Sai Baba's retelling of the Rama story, presenting Rama's life and actions with a spiritual interpretation of dharma, truth and devotion.",
+        url:
+            "https://www.sathyasai.org/teachings/vahini/ramakatha-rasavahini-part-1"
+    },
 
-    return freshData;
+    {
+        number: 11,
+        title: "Ramakatha Rasavahini — Part II",
+        subtitle: "The Rama story continued",
+        summary:
+            "The continuation of the Rama narrative, exploring the characters, events and spiritual lessons surrounding Rama, Sita, Lakshmana, Hanuman and Ravana.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
-  }
+    {
+        number: 12,
+        title: "Sandeha Nivarini",
+        subtitle: "Removal of spiritual doubts",
+        summary:
+            "A question-and-answer style work intended to address doubts concerning spiritual life, with explanations, stories and examples used to clarify deeper principles.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
+    {
+        number: 13,
+        title: "Sathya Sai Vahini",
+        subtitle: "The stream of Divine Grace",
+        summary:
+            "A broad presentation of spiritual truths concerning the Self, Indian spiritual values, knowledge, the Divine and the search for meaning.",
+        url:
+            "https://www.sathyasai.org/teachings/vahini/sathya-sai-vahini"
+    },
 
-  try {
+    {
+        number: 14,
+        title: "Sutra Vahini",
+        subtitle: "The wisdom of the Brahma Sutras",
+        summary:
+            "An explanation of the essence of Vedanta through the Brahma Sutras, focusing on Brahma Vidya and the nature of ultimate spiritual reality.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
-    const data =
-      JSON.parse(saved);
+    {
+        number: 15,
+        title: "Upanishad Vahini",
+        subtitle: "The essence of Upanishadic wisdom",
+        summary:
+            "A presentation of important Upanishadic teachings, drawing out their spiritual significance for study, understanding and inner transformation.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
+    },
 
-
-    if (
-      !data ||
-      data.date !== today
-    ) {
-
-      const freshData = {
-        date: today,
-        used: 0
-      };
-
-      localStorage.setItem(
-        PICK_STORAGE_KEY,
-        JSON.stringify(freshData)
-      );
-
-      return freshData;
-
+    {
+        number: 16,
+        title: "Vidya Vahini",
+        subtitle: "The stream of spiritual education",
+        summary:
+            "Essays concerning education, its deeper purpose and the development of truth, goodness, beauty and character alongside intellectual learning.",
+        url:
+            "https://www.sathyasai.org/resources/ebooks/vahinis"
     }
 
-
-    return data;
-
-  } catch (error) {
-
-    const freshData = {
-      date: today,
-      used: 0
-    };
-
-    localStorage.setItem(
-      PICK_STORAGE_KEY,
-      JSON.stringify(freshData)
-    );
-
-    return freshData;
-
-  }
-
-}
-
-
-function savePickData(data) {
-
-  localStorage.setItem(
-    PICK_STORAGE_KEY,
-    JSON.stringify(data)
-  );
-
-}
-
-
-/* =========================================================
-   DAY OF YEAR
-========================================================= */
-
-function getDayOfYear(date = new Date()) {
-
-  const start =
-    new Date(
-      date.getFullYear(),
-      0,
-      0
-    );
-
-  const difference =
-    date - start;
-
-  const oneDay =
-    1000 *
-    60 *
-    60 *
-    24;
-
-  return Math.floor(
-    difference / oneDay
-  );
-
-}
-
-
-/* =========================================================
-   GET TODAY'S AUTOMATIC CHIT
-========================================================= */
-
-function getDailyChit() {
-
-  const day =
-    getDayOfYear();
-
-  const index =
-    (day - 1) % CARDS.length;
-
-
-  return {
-    card: CARDS[index],
-    index: index
-  };
-
-}
-
-
-/* =========================================================
-   DISPLAY TODAY'S CHIT
-========================================================= */
-
-function displayDailyChit() {
-
-  const daily =
-    getDailyChit();
-
-  const card =
-    daily.card;
-
-  const number =
-    daily.index + 1;
-
-
-  dailyTitle.textContent =
-    card.title;
-
-  dailyText.textContent =
-    card.text;
-
-  dailyCategory.textContent =
-    card.category.toUpperCase();
-
-  dailyNumber.textContent =
-    `Chit ${String(number).padStart(3, "0")} / 108`;
-
-
-  heroCardTitle.textContent =
-    card.title;
-
-  heroCardText.textContent =
-    card.text;
-
-  heroCardCategory.textContent =
-    card.category;
-
-  heroCardNumber.textContent =
-    `${String(number).padStart(2, "0")} / 108`;
-
-
-  const today =
-    new Date();
-
-
-  const dateText =
-    today.toLocaleDateString(
-      undefined,
-      {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      }
-    );
-
-
-  chitDate.textContent =
-    dateText.toUpperCase();
-
-}
-
-
-/* =========================================================
-   PICK ANOTHER CHIT
-   MAXIMUM 3 TIMES PER DAY
-========================================================= */
-
-function pickAnotherChit() {
-
-  const data =
-    getPickData();
-
-
-  /* -----------------------------------------
-     LIMIT REACHED
-  ------------------------------------------ */
-
-  if (
-    data.used >= DAILY_PICK_LIMIT
-  ) {
-
-    updatePickButton();
-
-    showLimitMessage();
-
-    return;
-
-  }
-
-
-  /* -----------------------------------------
-     FIND RANDOM CHIT
-  ------------------------------------------ */
-
-  const daily =
-    getDailyChit();
-
-
-  let index;
-
-
-  do {
-
-    index =
-      Math.floor(
-        Math.random() * CARDS.length
-      );
-
-  } while (
-    CARDS.length > 1 &&
-    index === daily.index
-  );
-
-
-  const card =
-    CARDS[index];
-
-
-  /* -----------------------------------------
-     DISPLAY RANDOM CHIT
-  ------------------------------------------ */
-
-  dailyTitle.textContent =
-    card.title;
-
-  dailyText.textContent =
-    card.text;
-
-  dailyCategory.textContent =
-    card.category.toUpperCase();
-
-  dailyNumber.textContent =
-    `Chit ${String(index + 1).padStart(3, "0")} / 108`;
-
-
-  heroCardTitle.textContent =
-    card.title;
-
-  heroCardText.textContent =
-    card.text;
-
-  heroCardCategory.textContent =
-    card.category;
-
-  heroCardNumber.textContent =
-    `${String(index + 1).padStart(2, "0")} / 108`;
-
-
-  /* -----------------------------------------
-     CONSUME ONE DAILY CHANCE
-  ------------------------------------------ */
-
-  data.used++;
-
-  savePickData(data);
-
-
-  updatePickButton();
-
-}
-
-
-/* =========================================================
-   UPDATE PICK BUTTON
-========================================================= */
-
-function updatePickButton() {
-
-  const button =
-    document.getElementById(
-      "anotherChitButton"
-    );
-
-
-  if (!button) return;
-
-
-  const data =
-    getPickData();
-
-
-  const remaining =
-    DAILY_PICK_LIMIT -
-    data.used;
-
-
-  if (remaining > 0) {
-
-    button.disabled = false;
-
-    button.textContent =
-      `✦ Pick Another Chit (${remaining} left today)`;
-
-  } else {
-
-    button.disabled = true;
-
-    button.textContent =
-      "Come back tomorrow 🌸";
-
-  }
-
-}
-
-
-/* =========================================================
-   LIMIT MESSAGE
-========================================================= */
-
-function showLimitMessage() {
-
-  const message =
-    document.createElement("div");
-
-
-  message.className =
-    "chit-limit-message";
-
-
-  message.innerHTML =
-    `
-      <strong>Today's three picks are complete.</strong>
-      <br>
-      Come back tomorrow for three more Chit picks. 🌸
-    `;
-
-
-  const chitWrapper =
-    document.querySelector(
-      ".chit-wrapper"
-    );
-
-
-  if (!chitWrapper) return;
-
-
-  const oldMessage =
-    chitWrapper.querySelector(
-      ".chit-limit-message"
-    );
-
-
-  if (oldMessage) {
-
-    oldMessage.remove();
-
-  }
-
-
-  chitWrapper.appendChild(
-    message
-  );
-
-
-  setTimeout(() => {
-
-    message.remove();
-
-  }, 3000);
-
-}
-
-
-/* =========================================================
-   COPY DAILY CHIT
-========================================================= */
-
-function copyDailyChit() {
-
-  const title =
-    dailyTitle.textContent;
-
-  const text =
-    dailyText.textContent;
-
-  const category =
-    dailyCategory.textContent;
-
-
-  const content =
-`${title}
-
-${text}
-
-— Sai Resonance
-${category}`;
-
-
-  if (
-    navigator.clipboard &&
-    navigator.clipboard.writeText
-  ) {
-
-    navigator.clipboard
-      .writeText(content)
-      .then(() => {
-
-        showTemporaryButtonMessage(
-          "copyDailyButton",
-          "✓ Copied"
-        );
-
-      })
-      .catch(() => {
-
-        fallbackCopy(content);
-
-      });
-
-  } else {
-
-    fallbackCopy(content);
-
-  }
-
-}
-
-
-/* =========================================================
-   COPY FALLBACK
-========================================================= */
-
-function fallbackCopy(text) {
-
-  const textarea =
-    document.createElement(
-      "textarea"
-    );
-
-
-  textarea.value =
-    text;
-
-
-  textarea.style.position =
-    "fixed";
-
-  textarea.style.opacity =
-    "0";
-
-
-  document.body.appendChild(
-    textarea
-  );
-
-
-  textarea.select();
-
-
-  try {
-
-    document.execCommand(
-      "copy"
-    );
-
-    showTemporaryButtonMessage(
-      "copyDailyButton",
-      "✓ Copied"
-    );
-
-  } catch (error) {
-
-    alert(
-      "Please copy the Chit manually."
-    );
-
-  }
-
-
-  textarea.remove();
-
-}
-
-
-/* =========================================================
-   TEMPORARY BUTTON MESSAGE
-========================================================= */
-
-function showTemporaryButtonMessage(
-  buttonId,
-  message
-) {
-
-  const button =
-    document.getElementById(
-      buttonId
-    );
-
-
-  if (!button) return;
-
-
-  const original =
-    button.textContent;
-
-
-  button.textContent =
-    message;
-
-
-  setTimeout(() => {
-
-    button.textContent =
-      original;
-
-  }, 1500);
-
-}
+];
 
 
 /* =========================================================
@@ -1267,121 +837,137 @@ function showTemporaryButtonMessage(
 
 const STORIES = [
 
-  {
-    type: "source",
-    title: "Sathya as a Young Student",
-    description:
-      "An account concerning Sathya during his early student years, showing qualities remembered in later accounts of his life.",
-    lesson:
-      "Early character, discipline and compassion can shape a person's entire journey.",
-    source:
-      "https://saispeaks.sathyasai.org/node/8764"
-  },
+    {
+        title: "The Value of Truth",
+        category: "truth",
+        summary:
+            "A short reflection on why truthfulness must become part of ordinary conduct, not merely an ideal spoken about.",
+        body:
+            "Stories used in spiritual teaching often turn a simple situation into a question of character. The deeper lesson is that truth has to be protected even when telling it is inconvenient.",
+        source:
+            "Sai Resonance reflection. For documented stories and discourses, consult the official Sri Sathya Sai literature collections."
+    },
 
-  {
-    type: "source",
-    title: "The Student Who Blamed Every Deity",
-    description:
-      "A story used to illustrate how people can misunderstand the relationship between prayer, responsibility and the Divine.",
-    lesson:
-      "Faith should not become an excuse for avoiding responsibility.",
-    source:
-      "https://saispeaks.sathyasai.org/node/6850"
-  },
+    {
+        title: "The Two Seeds",
+        category: "wisdom",
+        summary:
+            "A reflection on how the thoughts we repeatedly cultivate can influence the direction of our lives.",
+        body:
+            "The seed becomes a useful metaphor for the mind. What is repeatedly encouraged can grow stronger. The story invites the reader to examine which qualities are being watered every day.",
+        source:
+            "Sai Resonance original reflection — not presented as a quotation from Sri Sathya Sai Baba."
+    },
 
-  {
-    type: "source",
-    title: "Vidyasagar and His Mother's Wish",
-    description:
-      "A story associated with Vidyasagar and his mother's wish, highlighting the importance of love, respect and gratitude towards one's parents.",
-    lesson:
-      "Respect and gratitude toward parents are expressions of human values.",
-    source:
-      "https://legacy.sathyasai.org/discour/2000/esai/d001119.html"
-  },
+    {
+        title: "The Quiet Act of Service",
+        category: "service",
+        summary:
+            "A reminder that service does not need an audience.",
+        body:
+            "A helpful action performed quietly can be more meaningful than an action performed mainly for recognition. The lesson is to look for opportunities to help without making the self the centre of the service.",
+        source:
+            "Sai Resonance original reflection — not presented as a quotation from Sri Sathya Sai Baba."
+    },
 
-  {
-    type: "source",
-    title: "The Teacher Who Called Him Guruji",
-    description:
-      "A recollection connected with a teacher who addressed Sathya with respect, reflecting the affection and regard surrounding his student life.",
-    lesson:
-      "True learning is strengthened by humility, respect and affection.",
-    source:
-      "https://www.sathyasai.org/discour/2003/d031021.html"
-  },
+    {
+        title: "Rama and Dharma",
+        category: "dharma",
+        summary:
+            "Rama's story can be read not only as an epic narrative but also as a study of duty, truth and righteous conduct.",
+        body:
+            "In Ramakatha Rasavahini, Sri Sathya Sai Baba presents the Rama story from a spiritual perspective, drawing attention to Rama's role as an example of dharma and the deeper significance of the characters and events.",
+        source:
+            "Related official source: Sri Sathya Sai Baba, Ramakatha Rasavahini."
+    },
 
-  {
-    type: "reflection",
-    title: "The Cup of Water",
-    description:
-      "A person complains that they have little to give. Then they notice that even a simple cup of water can relieve another person's thirst.",
-    lesson:
-      "Service does not begin when we have everything. It begins with what we already have."
-  },
+    {
+        title: "The Power of Love",
+        category: "love",
+        summary:
+            "A reflection on how genuine love changes the way we see another person.",
+        body:
+            "Love can change the question from 'What can I get?' to 'What can I give?' The lesson is to allow compassion to influence ordinary relationships.",
+        source:
+            "Sai Resonance original reflection — not presented as a quotation from Sri Sathya Sai Baba."
+    },
 
-  {
-    type: "reflection",
-    title: "The Unsent Reply",
-    description:
-      "Someone writes an angry reply but waits before sending it. By the next morning, the words no longer feel necessary.",
-    lesson:
-      "Sometimes wisdom is simply giving anger enough time to become silence."
-  },
+    {
+        title: "The Student and the Teacher",
+        category: "wisdom",
+        summary:
+            "A reflection on humility in learning.",
+        body:
+            "Learning requires more than collecting information. A student must also develop the humility to listen, question, practise and correct mistakes.",
+        source:
+            "Sai Resonance reflection."
+    },
 
-  {
-    type: "reflection",
-    title: "The Extra Plate",
-    description:
-      "A family begins keeping one extra plate ready, not because they expect a visitor, but because they want to remain ready to share.",
-    lesson:
-      "Hospitality becomes a habit when generosity is prepared before it is requested."
-  },
+    {
+        title: "The Lamp",
+        category: "devotion",
+        summary:
+            "A simple image of a lamp becomes a reflection on sharing light without losing one's own.",
+        body:
+            "A lamp can light another lamp without becoming empty. The image invites reflection on how knowledge, love and service can be shared.",
+        source:
+            "Sai Resonance original reflection — not presented as a quotation."
+    },
 
-  {
-    type: "reflection",
-    title: "The Broken Pencil",
-    description:
-      "A child throws away a pencil after breaking its tip. An elder sharpens it and continues using it.",
-    lesson:
-      "A mistake or setback does not make a person useless."
-  },
+    {
+        title: "The Forgotten Gift",
+        category: "gratitude",
+        summary:
+            "A reflection on how easily ordinary blessings become invisible when attention is focused only on what is missing.",
+        body:
+            "Gratitude changes attention. Instead of constantly counting what is absent, the mind learns to notice what is already present.",
+        source:
+            "Sai Resonance original reflection."
+    },
 
-  {
-    type: "reflection",
-    title: "The Quiet Room",
-    description:
-      "A person searches everywhere for an answer and finally sits quietly. In the silence, the question becomes clearer.",
-    lesson:
-      "Sometimes we need less noise before we can understand what is happening within us."
-  },
+    {
+        title: "The Angry Word",
+        category: "love",
+        summary:
+            "A reminder that words spoken in anger can leave a mark long after the anger disappears.",
+        body:
+            "Before speaking in anger, pause. A few seconds of silence may protect a relationship from a wound that would otherwise take much longer to heal.",
+        source:
+            "Sai Resonance original reflection."
+    },
 
-  {
-    type: "reflection",
-    title: "The Small Lamp",
-    description:
-      "One small lamp is lit in a dark room. It does not remove the darkness everywhere, but it changes the space around it.",
-    lesson:
-      "You do not need to solve everything to make one corner of the world brighter."
-  },
+    {
+        title: "The Journey Within",
+        category: "devotion",
+        summary:
+            "A reflection on the inward journey of self-understanding.",
+        body:
+            "Spiritual literature repeatedly invites the seeker to look beyond external achievement and examine the mind, motives and sense of self.",
+        source:
+            "Sai Resonance reflection based on themes found across the Vahini literature."
+    },
 
-  {
-    type: "reflection",
-    title: "The Kind Word",
-    description:
-      "Two people meet after a difficult day. One offers nothing material, only a sincere and kind word.",
-    lesson:
-      "Kindness can be a form of service."
-  },
+    {
+        title: "The Smallest Service",
+        category: "service",
+        summary:
+            "A reminder that service can begin with the person standing immediately in front of us.",
+        body:
+            "Service does not always require a large institution or dramatic event. Listening, helping, teaching and sharing can all become forms of service when performed with sincerity.",
+        source:
+            "Sai Resonance reflection."
+    },
 
-  {
-    type: "reflection",
-    title: "The Heavy Bag",
-    description:
-      "A traveller carries a bag filled with things that are no longer useful. When the traveller finally lets some things go, the journey becomes easier.",
-    lesson:
-      "Holding on to anger, resentment and unnecessary worry can make the journey heavier."
-  }
+    {
+        title: "The Question Before the Answer",
+        category: "wisdom",
+        summary:
+            "Sometimes the most important spiritual step is asking the right question.",
+        body:
+            "Many Vahini works use questions as a doorway into spiritual inquiry. The reader is encouraged not merely to collect answers but to examine the assumptions behind the question.",
+        source:
+            "Sai Resonance reflection."
+    }
 
 ];
 
@@ -1392,703 +978,846 @@ const STORIES = [
 
 const TEACHINGS = [
 
-  {
-    title: "Love All; Serve All",
-    text:
-      "Love should not be limited by personal preference or social boundaries."
-  },
+    {
+        title: "Love",
+        text:
+            "Love is a recurring central theme in Sri Sathya Sai Baba's teachings. It can be studied not merely as an emotion but as a way of relating to others."
+    },
 
-  {
-    title: "Help Ever; Hurt Never",
-    text:
-      "Use your actions and words to reduce suffering rather than create it."
-  },
+    {
+        title: "Truth",
+        text:
+            "Truthfulness concerns both what we say and the integrity with which we live."
+    },
 
-  {
-    title: "Service is Love in Action",
-    text:
-      "Selfless service gives practical expression to compassion."
-  },
+    {
+        title: "Right Conduct",
+        text:
+            "Dharma concerns right action and responsible conduct in the circumstances of life."
+    },
 
-  {
-    title: "Duty is God; Work is Worship",
-    text:
-      "Ordinary responsibilities can become meaningful when performed sincerely."
-  },
+    {
+        title: "Peace",
+        text:
+            "Peace is presented as an inner condition that requires discipline rather than something dependent entirely on external circumstances."
+    },
 
-  {
-    title: "The Five Human Values",
-    text:
-      "Truth, Right Conduct, Peace, Love and Nonviolence provide a framework for human development."
-  },
+    {
+        title: "Service",
+        text:
+            "Service directs attention beyond the individual self toward the welfare of others."
+    },
 
-  {
-    title: "Practice What You Learn",
-    text:
-      "Knowledge becomes valuable when it influences conduct."
-  },
+    {
+        title: "Education",
+        text:
+            "The deeper purpose of education includes character and the development of truth, goodness and responsibility."
+    },
 
-  {
-    title: "Speak Obligingly",
-    text:
-      "Words should be truthful while also being considerate and constructive."
-  },
+    {
+        title: "Self-knowledge",
+        text:
+            "The Vahini writings repeatedly encourage the seeker to inquire into the nature of the Self."
+    },
 
-  {
-    title: "Unity in Diversity",
-    text:
-      "Differences need not prevent people from recognising shared human values."
-  },
+    {
+        title: "Devotion",
+        text:
+            "Devotion can become a path of inner transformation when it is joined with sincere practice."
+    },
 
-  {
-    title: "Selfless Service",
-    text:
-      "Service is most meaningful when it is offered without selfish expectation."
-  },
+    {
+        title: "Contentment",
+        text:
+            "Contentment can help the mind become less dependent on endless acquisition and comparison."
+    },
 
-  {
-    title: "Inner Peace",
-    text:
-      "Peace is not simply the absence of external noise; it also involves discipline of thought and emotion."
-  }
+    {
+        title: "Compassion",
+        text:
+            "Compassion changes the way we respond to another person's difficulty."
+    },
+
+    {
+        title: "Unity",
+        text:
+            "Spiritual inquiry can lead the seeker toward an understanding of the deeper unity of humanity."
+    },
+
+    {
+        title: "Practice",
+        text:
+            "Reading and hearing spiritual teachings becomes meaningful when they influence everyday conduct."
+    }
 
 ];
 
 
 /* =========================================================
-   DAILY WISDOM
+   WISDOM REFLECTIONS
 ========================================================= */
 
 const WISDOM = [
 
-  {
-    text:
-      "A quiet mind can hear what a noisy mind misses.",
-    category:
-      "Sai Resonance Reflection"
-  },
+    "Read slowly. A single sentence understood deeply can be more valuable than many pages read hurriedly.",
 
-  {
-    text:
-      "The smallest act of kindness can become someone's reason to smile.",
-    category:
-      "Sai Resonance Reflection"
-  },
+    "A story becomes wisdom when its lesson enters daily life.",
 
-  {
-    text:
-      "What we practise every day slowly becomes who we are.",
-    category:
-      "Sai Resonance Reflection"
-  },
+    "Before reacting, create a little space between what happened and what you choose to do.",
 
-  {
-    text:
-      "Peace grows when we stop demanding that every moment go exactly our way.",
-    category:
-      "Sai Resonance Reflection"
-  },
+    "The quietest acts of service are sometimes the ones that change another person's day.",
 
-  {
-    text:
-      "Service begins wherever compassion meets opportunity.",
-    category:
-      "Sai Resonance Reflection"
-  },
+    "Knowledge can fill the mind; practice gives knowledge a place in life.",
 
-  {
-    text:
-      "A good thought becomes powerful when it becomes a good action.",
-    category:
-      "Sai Resonance Reflection"
-  },
+    "Ask yourself today: what quality do I want my actions to express?",
 
-  {
-    text:
-      "Do not wait for a perfect day to do something good.",
-    category:
-      "Sai Resonance Reflection"
-  }
+    "A peaceful mind does not mean that problems disappear. It means we meet them differently.",
 
+    "Let today's reading become tomorrow's conduct."
 ];
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const PICK_STORAGE_KEY =
+    "sai_resonance_daily_chit_picks";
+
+const DAILY_PICK_LIMIT = 3;
 
 
 /* =========================================================
    DOM ELEMENTS
 ========================================================= */
 
-const heroCardTitle =
-  document.getElementById(
-    "heroCardTitle"
-  );
-
-const heroCardText =
-  document.getElementById(
-    "heroCardText"
-  );
-
-const heroCardCategory =
-  document.getElementById(
-    "heroCardCategory"
-  );
-
-const heroCardNumber =
-  document.getElementById(
-    "heroCardNumber"
-  );
-
-
 const dailyTitle =
-  document.getElementById(
-    "dailyTitle"
-  );
+    document.getElementById("dailyTitle");
 
 const dailyText =
-  document.getElementById(
-    "dailyText"
-  );
+    document.getElementById("dailyText");
 
 const dailyCategory =
-  document.getElementById(
-    "dailyCategory"
-  );
+    document.getElementById("dailyCategory");
 
 const dailyNumber =
-  document.getElementById(
-    "dailyNumber"
-  );
+    document.getElementById("dailyNumber");
 
 const chitDate =
-  document.getElementById(
-    "chitDate"
-  );
+    document.getElementById("chitDate");
 
+const anotherChitButton =
+    document.getElementById("anotherChitButton");
 
-const storyGrid =
-  document.getElementById(
-    "storyGrid"
-  );
+const copyDailyButton =
+    document.getElementById("copyDailyButton");
 
-const storySearch =
-  document.getElementById(
-    "storySearch"
-  );
+const chitLimitMessage =
+    document.getElementById("chitLimitMessage");
 
-const storyFilter =
-  document.getElementById(
-    "storyFilter"
-  );
-
-const storyCount =
-  document.getElementById(
-    "storyCount"
-  );
-
-
-const teachingGrid =
-  document.getElementById(
-    "teachingGrid"
-  );
-
-const teachingSearch =
-  document.getElementById(
-    "teachingSearch"
-  );
-
-
-const cardGrid =
-  document.getElementById(
-    "cardGrid"
-  );
-
-const cardSearch =
-  document.getElementById(
-    "cardSearch"
-  );
-
-
-const wisdomText =
-  document.getElementById(
-    "wisdomText"
-  );
-
-const wisdomCategory =
-  document.getElementById(
-    "wisdomCategory"
-  );
-
-
-const modal =
-  document.getElementById(
-    "contentModal"
-  );
-
-const modalOverlay =
-  document.getElementById(
-    "modalOverlay"
-  );
-
-const modalClose =
-  document.getElementById(
-    "modalClose"
-  );
-
-const modalEyebrow =
-  document.getElementById(
-    "modalEyebrow"
-  );
-
-const modalTitle =
-  document.getElementById(
-    "modalTitle"
-  );
-
-const modalBody =
-  document.getElementById(
-    "modalBody"
-  );
-
-const modalSource =
-  document.getElementById(
-    "modalSource"
-  );
+const dashboardDailyTitle =
+    document.getElementById("dashboardDailyTitle");
 
 
 /* =========================================================
-   RENDER CHINNA KATHA
+   DATE HELPERS
+========================================================= */
+
+function getTodayString() {
+
+    const now = new Date();
+
+    const year =
+        now.getFullYear();
+
+    const month =
+        String(now.getMonth() + 1).padStart(2, "0");
+
+    const day =
+        String(now.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+
+function getDayOfYear(date = new Date()) {
+
+    const start =
+        new Date(date.getFullYear(), 0, 0);
+
+    const diff =
+        date - start;
+
+    const oneDay =
+        1000 * 60 * 60 * 24;
+
+    return Math.floor(diff / oneDay);
+}
+
+
+/* =========================================================
+   DAILY CARD
+========================================================= */
+
+function getDailyChit() {
+
+    const index =
+        getDayOfYear() % CARDS.length;
+
+    return {
+        ...CARDS[index],
+        index
+    };
+}
+
+
+function displayDailyChit(card) {
+
+    dailyTitle.textContent =
+        card.title;
+
+    dailyText.textContent =
+        card.text;
+
+    dailyCategory.textContent =
+        card.category;
+
+    dailyNumber.textContent =
+        `${card.index + 1} / ${CARDS.length}`;
+
+    chitDate.textContent =
+        new Date().toLocaleDateString(
+            undefined,
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+    if (dashboardDailyTitle) {
+
+        dashboardDailyTitle.textContent =
+            card.title;
+
+    }
+}
+
+
+/* =========================================================
+   PICK DATA
+========================================================= */
+
+function getPickData() {
+
+    const today =
+        getTodayString();
+
+    let data = null;
+
+    try {
+
+        data =
+            JSON.parse(
+                localStorage.getItem(
+                    PICK_STORAGE_KEY
+                )
+            );
+
+    } catch (error) {
+
+        data = null;
+
+    }
+
+
+    if (!data || data.date !== today) {
+
+        data = {
+            date: today,
+            used: 0
+        };
+
+    }
+
+    return data;
+}
+
+
+function savePickData(data) {
+
+    localStorage.setItem(
+        PICK_STORAGE_KEY,
+        JSON.stringify(data)
+    );
+
+}
+
+
+/* =========================================================
+   PICK BUTTON
+========================================================= */
+
+function updatePickButton() {
+
+    const data =
+        getPickData();
+
+    const remaining =
+        DAILY_PICK_LIMIT - data.used;
+
+
+    if (remaining <= 0) {
+
+        anotherChitButton.disabled =
+            true;
+
+        anotherChitButton.textContent =
+            "Come back tomorrow 🌸";
+
+        chitLimitMessage.textContent =
+            "You have used all 3 extra picks for today.";
+
+        return;
+
+    }
+
+
+    anotherChitButton.disabled =
+        false;
+
+    anotherChitButton.textContent =
+        `Pick Another Chit · ${remaining} left today`;
+
+    chitLimitMessage.textContent =
+        "The automatic daily card is separate from these 3 extra picks.";
+
+}
+
+
+/* =========================================================
+   RANDOM EXTRA CARD
+========================================================= */
+
+function pickAnotherChit() {
+
+    const data =
+        getPickData();
+
+
+    if (data.used >= DAILY_PICK_LIMIT) {
+
+        updatePickButton();
+
+        return;
+
+    }
+
+
+    const daily =
+        getDailyChit();
+
+
+    let randomIndex;
+
+
+    do {
+
+        randomIndex =
+            Math.floor(
+                Math.random() * CARDS.length
+            );
+
+    } while (
+        randomIndex === daily.index
+    );
+
+
+    displayDailyChit({
+
+        ...CARDS[randomIndex],
+
+        index: randomIndex
+
+    });
+
+
+    data.used++;
+
+    savePickData(data);
+
+    updatePickButton();
+
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+function copyDailyChit() {
+
+    const text =
+        `${dailyTitle.textContent}\n\n${dailyText.textContent}\n\n— Sai Resonance`;
+
+    navigator.clipboard
+        .writeText(text)
+        .then(() => {
+
+            const oldText =
+                copyDailyButton.textContent;
+
+            copyDailyButton.textContent =
+                "Copied ✓";
+
+            setTimeout(() => {
+
+                copyDailyButton.textContent =
+                    oldText;
+
+            }, 1500);
+
+        })
+        .catch(() => {
+
+            const area =
+                document.createElement("textarea");
+
+            area.value = text;
+
+            document.body.appendChild(area);
+
+            area.select();
+
+            document.execCommand("copy");
+
+            area.remove();
+
+            copyDailyButton.textContent =
+                "Copied ✓";
+
+            setTimeout(() => {
+
+                copyDailyButton.textContent =
+                    "Copy";
+
+            }, 1500);
+
+        });
+
+}
+
+
+/* =========================================================
+   STORY RENDER
 ========================================================= */
 
 function renderStories() {
 
-  const query =
-    storySearch.value
-      .trim()
-      .toLowerCase();
+    const grid =
+        document.getElementById("storyGrid");
 
-  const filter =
-    storyFilter.value;
+    const search =
+        document
+            .getElementById("storySearch")
+            .value
+            .toLowerCase()
+            .trim();
 
-
-  const filtered =
-    STORIES.filter(
-      story => {
-
-        const matchesFilter =
-          filter === "all" ||
-          story.type === filter;
+    const filter =
+        document
+            .getElementById("storyFilter")
+            .value;
 
 
-        const searchable =
-          (
-            story.title +
-            " " +
-            story.description +
-            " " +
-            story.lesson
-          ).toLowerCase();
+    const filtered =
+        STORIES.filter(story => {
+
+            const matchesSearch =
+                !search ||
+                story.title.toLowerCase().includes(search) ||
+                story.summary.toLowerCase().includes(search) ||
+                story.body.toLowerCase().includes(search);
+
+            const matchesFilter =
+                filter === "all" ||
+                story.category === filter;
+
+            return (
+                matchesSearch &&
+                matchesFilter
+            );
+
+        });
 
 
-        const matchesSearch =
-          !query ||
-          searchable.includes(
-            query
-          );
+    document.getElementById("storyCount")
+        .textContent =
+        `${filtered.length} stories`;
 
 
-        return (
-          matchesFilter &&
-          matchesSearch
-        );
+    if (!filtered.length) {
 
-      }
-    );
+        grid.innerHTML =
+            `<div class="empty-state">
+                No stories found. Try another search.
+            </div>`;
 
-
-  storyGrid.innerHTML = "";
-
-
-  if (!filtered.length) {
-
-    storyGrid.innerHTML =
-      `
-      <div class="empty-message">
-        No Chinna Katha found.
-      </div>
-      `;
-
-
-    storyCount.textContent =
-      "0 Stories";
-
-    return;
-
-  }
-
-
-  storyCount.textContent =
-    `${filtered.length} Stories`;
-
-
-  filtered.forEach(
-    story => {
-
-      const article =
-        document.createElement(
-          "article"
-        );
-
-
-      article.className =
-        "story-card";
-
-
-      const typeLabel =
-        story.type === "source"
-          ? "Source Based"
-          : "Sai Resonance Reflection";
-
-
-      article.innerHTML =
-        `
-        <span class="story-type">
-          ${typeLabel}
-        </span>
-
-        <h3>
-          ${escapeHTML(
-            story.title
-          )}
-        </h3>
-
-        <p>
-          ${escapeHTML(
-            story.description
-          )}
-        </p>
-
-        <div class="story-lesson">
-          Lesson:
-          ${escapeHTML(
-            story.lesson
-          )}
-        </div>
-        `;
-
-
-      article.addEventListener(
-        "click",
-        () => openStory(story)
-      );
-
-
-      storyGrid.appendChild(
-        article
-      );
+        return;
 
     }
-  );
+
+
+    grid.innerHTML =
+        filtered
+            .map((story, index) => {
+
+                return `
+                    <article
+                        class="story-card"
+                        data-story-index="${STORIES.indexOf(story)}"
+                    >
+
+                        <div class="story-category">
+                            ${story.category}
+                        </div>
+
+                        <h3>
+                            ${story.title}
+                        </h3>
+
+                        <p>
+                            ${story.summary}
+                        </p>
+
+                        <span class="read-more">
+                            Read reflection →
+                        </span>
+
+                    </article>
+                `;
+
+            })
+            .join("");
+
+
+    grid
+        .querySelectorAll(".story-card")
+        .forEach(card => {
+
+            card.addEventListener(
+                "click",
+                () => {
+
+                    const index =
+                        Number(
+                            card.dataset.storyIndex
+                        );
+
+                    openModal(
+                        STORIES[index].category,
+                        STORIES[index].title,
+                        STORIES[index].body,
+                        STORIES[index].source
+                    );
+
+                }
+            );
+
+        });
 
 }
 
 
 /* =========================================================
-   OPEN STORY
+   VAHINI RENDER
 ========================================================= */
 
-function openStory(story) {
+function renderVahinis() {
 
-  modalEyebrow.textContent =
-    story.type === "source"
-      ? "SOURCE BASED"
-      : "SAI RESONANCE REFLECTION";
+    const grid =
+        document.getElementById("vahiniGrid");
 
+    const input =
+        document.getElementById("vahiniSearch");
 
-  modalTitle.textContent =
-    story.title;
-
-
-  modalBody.innerHTML =
-    `
-    <p>
-      ${escapeHTML(
-        story.description
-      )}
-    </p>
-
-    <p>
-      <strong>Lesson:</strong>
-      ${escapeHTML(
-        story.lesson
-      )}
-    </p>
-    `;
+    const search =
+        input.value.toLowerCase().trim();
 
 
-  if (story.source) {
+    const filtered =
+        VAHINIS.filter(vahini => {
 
-    modalSource.innerHTML =
-      `
-      Source:
-      <a
-        href="${story.source}"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Read source
-      </a>
-      `;
+            return (
+                !search ||
+                vahini.title
+                    .toLowerCase()
+                    .includes(search) ||
 
-  } else {
+                vahini.subtitle
+                    .toLowerCase()
+                    .includes(search) ||
 
-    modalSource.textContent =
-      "Original reflection written for Sai Resonance. It is not a quotation from Sri Sathya Sai Baba.";
+                vahini.summary
+                    .toLowerCase()
+                    .includes(search)
+            );
 
-  }
+        });
 
 
-  openModal();
+    if (!filtered.length) {
+
+        grid.innerHTML =
+            `<div class="empty-state">
+                No Vahini found.
+            </div>`;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        filtered
+            .map(vahini => {
+
+                return `
+                    <article class="vahini-card">
+
+                        <div class="vahini-number">
+                            VAHINI ${String(vahini.number).padStart(2, "0")}
+                        </div>
+
+                        <h3>
+                            ${vahini.title}
+                        </h3>
+
+                        <div class="vahini-subtitle">
+                            ${vahini.subtitle}
+                        </div>
+
+                        <p>
+                            ${vahini.summary}
+                        </p>
+
+                        <a
+                            href="${vahini.url}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="vahini-link"
+                        >
+                            Official source →
+                        </a>
+
+                    </article>
+                `;
+
+            })
+            .join("");
 
 }
 
 
 /* =========================================================
-   RENDER TEACHINGS
+   TEACHINGS
 ========================================================= */
 
 function renderTeachings() {
 
-  const query =
-    teachingSearch.value
-      .trim()
-      .toLowerCase();
+    const grid =
+        document.getElementById("teachingGrid");
+
+    const search =
+        document
+            .getElementById("teachingSearch")
+            .value
+            .toLowerCase()
+            .trim();
 
 
-  const filtered =
-    TEACHINGS.filter(
-      teaching => {
+    const filtered =
+        TEACHINGS.filter(item => {
 
-        const searchable =
-          (
-            teaching.title +
-            " " +
-            teaching.text
-          ).toLowerCase();
+            return (
+                !search ||
+                item.title
+                    .toLowerCase()
+                    .includes(search) ||
 
+                item.text
+                    .toLowerCase()
+                    .includes(search)
+            );
 
-        return (
-          !query ||
-          searchable.includes(
-            query
-          )
-        );
-
-      }
-    );
+        });
 
 
-  teachingGrid.innerHTML = "";
+    if (!filtered.length) {
 
+        grid.innerHTML =
+            `<div class="empty-state">
+                No teaching found.
+            </div>`;
 
-  if (!filtered.length) {
-
-    teachingGrid.innerHTML =
-      `
-      <div class="empty-message">
-        No teaching found.
-      </div>
-      `;
-
-    return;
-
-  }
-
-
-  filtered.forEach(
-    (teaching, index) => {
-
-      const article =
-        document.createElement(
-          "article"
-        );
-
-
-      article.className =
-        "teaching-card";
-
-
-      article.innerHTML =
-        `
-        <span class="teaching-number">
-          ${String(
-            index + 1
-          ).padStart(2, "0")}
-        </span>
-
-        <h3>
-          ${escapeHTML(
-            teaching.title
-          )}
-        </h3>
-
-        <p>
-          ${escapeHTML(
-            teaching.text
-          )}
-        </p>
-        `;
-
-
-      teachingGrid.appendChild(
-        article
-      );
+        return;
 
     }
-  );
+
+
+    grid.innerHTML =
+        filtered
+            .map(item => {
+
+                return `
+                    <article class="teaching-card">
+
+                        <h3>
+                            ${item.title}
+                        </h3>
+
+                        <p>
+                            ${item.text}
+                        </p>
+
+                    </article>
+                `;
+
+            })
+            .join("");
 
 }
 
 
 /* =========================================================
-   RENDER 108 CARDS
+   108 CARD GRID
 ========================================================= */
 
 function renderCards() {
 
-  const query =
-    cardSearch.value
-      .trim()
-      .toLowerCase();
+    const grid =
+        document.getElementById("cardGrid");
+
+    const search =
+        document
+            .getElementById("cardSearch")
+            .value
+            .toLowerCase()
+            .trim();
 
 
-  const filtered =
-    CARDS
-      .map(
-        (card, index) => ({
-          ...card,
-          index
-        })
-      )
-      .filter(
-        card => {
+    const filtered =
+        CARDS
+            .map((card, index) => ({
+                ...card,
+                index
+            }))
+            .filter(card => {
 
-          const searchable =
-            (
-              card.title +
-              " " +
-              card.text +
-              " " +
-              card.category
-            ).toLowerCase();
+                return (
+                    !search ||
+                    card.title
+                        .toLowerCase()
+                        .includes(search) ||
 
+                    card.text
+                        .toLowerCase()
+                        .includes(search) ||
 
-          return (
-            !query ||
-            searchable.includes(
-              query
-            )
-          );
+                    card.category
+                        .toLowerCase()
+                        .includes(search)
+                );
 
-        }
-      );
+            });
 
 
-  cardGrid.innerHTML = "";
+    if (!filtered.length) {
 
+        grid.innerHTML =
+            `<div class="empty-state">
+                No card found.
+            </div>`;
 
-  if (!filtered.length) {
-
-    cardGrid.innerHTML =
-      `
-      <div class="empty-message">
-        No Chit found.
-      </div>
-      `;
-
-    return;
-
-  }
-
-
-  filtered.forEach(
-    card => {
-
-      const article =
-        document.createElement(
-          "article"
-        );
-
-
-      article.className =
-        "daily-card";
-
-
-      article.innerHTML =
-        `
-        <span class="daily-card-number">
-          CHIT ${String(
-            card.index + 1
-          ).padStart(3, "0")}
-        </span>
-
-        <h3>
-          ${escapeHTML(
-            card.title
-          )}
-        </h3>
-
-        <p>
-          ${escapeHTML(
-            card.text
-          )}
-        </p>
-        `;
-
-
-      article.addEventListener(
-        "click",
-        () => openCard(card)
-      );
-
-
-      cardGrid.appendChild(
-        article
-      );
+        return;
 
     }
-  );
+
+
+    grid.innerHTML =
+        filtered
+            .map(card => {
+
+                return `
+                    <article
+                        class="reflection-card"
+                        data-card-index="${card.index}"
+                    >
+
+                        <div class="reflection-number">
+                            CARD ${String(card.index + 1).padStart(3, "0")}
+                        </div>
+
+                        <h3>
+                            ${card.title}
+                        </h3>
+
+                        <p>
+                            ${card.text}
+                        </p>
+
+                    </article>
+                `;
+
+            })
+            .join("");
+
+
+    grid
+        .querySelectorAll(".reflection-card")
+        .forEach(card => {
+
+            card.addEventListener(
+                "click",
+                () => {
+
+                    const index =
+                        Number(
+                            card.dataset.cardIndex
+                        );
+
+                    const item =
+                        CARDS[index];
+
+                    openModal(
+                        item.category,
+                        item.title,
+                        `<p>${item.text}</p>`,
+                        "Sai Resonance Reflection — not presented as a direct quotation."
+                    );
+
+                }
+            );
+
+        });
 
 }
 
 
 /* =========================================================
-   OPEN CARD
+   WISDOM
 ========================================================= */
 
-function openCard(card) {
+function displayWisdom() {
 
-  modalEyebrow.textContent =
-    card.category.toUpperCase();
+    const element =
+        document.getElementById("wisdomText");
 
+    const index =
+        getDayOfYear() % WISDOM.length;
 
-  modalTitle.textContent =
-    card.title;
-
-
-  modalBody.innerHTML =
-    `
-    <p>
-      ${escapeHTML(
-        card.text
-      )}
-    </p>
-    `;
-
-
-  modalSource.textContent =
-    "Sai Resonance daily reflection collection.";
-
-
-  openModal();
+    element.textContent =
+        WISDOM[index];
 
 }
 
@@ -2097,92 +1826,62 @@ function openCard(card) {
    MODAL
 ========================================================= */
 
-function openModal() {
+function openModal(
+    eyebrow,
+    title,
+    body,
+    source
+) {
 
-  modal.classList.add(
-    "active"
-  );
+    const modal =
+        document.getElementById("contentModal");
 
+    document.getElementById("modalEyebrow")
+        .textContent =
+        eyebrow;
 
-  modal.setAttribute(
-    "aria-hidden",
-    "false"
-  );
+    document.getElementById("modalTitle")
+        .textContent =
+        title;
 
+    document.getElementById("modalBody")
+        .innerHTML =
+        body
+            .split("\n")
+            .map(line => `<p>${line}</p>`)
+            .join("");
 
-  document.body.classList.add(
-    "modal-open"
-  );
+    document.getElementById("modalSource")
+        .textContent =
+        source || "";
+
+    modal.classList.add("active");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
 function closeModal() {
 
-  modal.classList.remove(
-    "active"
-  );
+    const modal =
+        document.getElementById("contentModal");
 
+    modal.classList.remove("active");
 
-  modal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-
-  document.body.classList.remove(
-    "modal-open"
-  );
-
-}
-
-
-/* =========================================================
-   DAILY WISDOM
-========================================================= */
-
-function displayDailyWisdom() {
-
-  const day =
-    getDayOfYear();
-
-
-  const index =
-    (day - 1) %
-    WISDOM.length;
-
-
-  const item =
-    WISDOM[index];
-
-
-  wisdomText.textContent =
-    item.text;
-
-
-  wisdomCategory.textContent =
-    item.category;
-
-}
-
-
-/* =========================================================
-   HTML ESCAPE
-========================================================= */
-
-function escapeHTML(value) {
-
-  const div =
-    document.createElement(
-      "div"
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
     );
 
-
-  div.textContent =
-    value;
-
-
-  return div.innerHTML;
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -2191,230 +1890,192 @@ function escapeHTML(value) {
    MOBILE MENU
 ========================================================= */
 
-const mobileMenuButton =
-  document.getElementById(
-    "mobileMenuButton"
-  );
+function setupMobileMenu() {
 
-const mobileNav =
-  document.getElementById(
-    "mobileNav"
-  );
+    const button =
+        document.getElementById(
+            "mobileMenuButton"
+        );
 
-
-if (
-  mobileMenuButton &&
-  mobileNav
-) {
-
-  mobileMenuButton.addEventListener(
-    "click",
-    () => {
-
-      mobileNav.classList.toggle(
-        "active"
-      );
-
-
-      const isOpen =
-        mobileNav.classList.contains(
-          "active"
+    const nav =
+        document.getElementById(
+            "mainNav"
         );
 
 
-      mobileMenuButton.textContent =
-        isOpen
-          ? "×"
-          : "☰";
+    button.addEventListener(
+        "click",
+        () => {
 
-    }
-  );
-
-
-  mobileNav
-    .querySelectorAll("a")
-    .forEach(
-      link => {
-
-        link.addEventListener(
-          "click",
-          () => {
-
-            mobileNav.classList.remove(
-              "active"
+            nav.classList.toggle(
+                "active"
             );
 
-            mobileMenuButton.textContent =
-              "☰";
+        }
+    );
 
-          }
+
+    nav
+        .querySelectorAll("a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    nav.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+function setupEvents() {
+
+    document
+        .getElementById("storySearch")
+        .addEventListener(
+            "input",
+            renderStories
         );
 
-      }
+    document
+        .getElementById("storyFilter")
+        .addEventListener(
+            "change",
+            renderStories
+        );
+
+
+    document
+        .getElementById("vahiniSearch")
+        .addEventListener(
+            "input",
+            renderVahinis
+        );
+
+
+    document
+        .getElementById("teachingSearch")
+        .addEventListener(
+            "input",
+            renderTeachings
+        );
+
+
+    document
+        .getElementById("cardSearch")
+        .addEventListener(
+            "input",
+            renderCards
+        );
+
+
+    anotherChitButton.addEventListener(
+        "click",
+        pickAnotherChit
+    );
+
+
+    copyDailyButton.addEventListener(
+        "click",
+        copyDailyChit
+    );
+
+
+    document
+        .getElementById("modalClose")
+        .addEventListener(
+            "click",
+            closeModal
+        );
+
+
+    document
+        .getElementById("modalOverlay")
+        .addEventListener(
+            "click",
+            closeModal
+        );
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (event.key === "Escape") {
+
+                closeModal();
+
+            }
+
+        }
     );
 
 }
 
 
 /* =========================================================
-   BUTTON EVENTS
-========================================================= */
-
-const anotherChitButton =
-  document.getElementById(
-    "anotherChitButton"
-  );
-
-
-if (anotherChitButton) {
-
-  anotherChitButton.addEventListener(
-    "click",
-    pickAnotherChit
-  );
-
-}
-
-
-const copyDailyButton =
-  document.getElementById(
-    "copyDailyButton"
-  );
-
-
-if (copyDailyButton) {
-
-  copyDailyButton.addEventListener(
-    "click",
-    copyDailyChit
-  );
-
-}
-
-
-/* =========================================================
-   SEARCH EVENTS
-========================================================= */
-
-if (storySearch) {
-
-  storySearch.addEventListener(
-    "input",
-    renderStories
-  );
-
-}
-
-
-if (storyFilter) {
-
-  storyFilter.addEventListener(
-    "change",
-    renderStories
-  );
-
-}
-
-
-if (teachingSearch) {
-
-  teachingSearch.addEventListener(
-    "input",
-    renderTeachings
-  );
-
-}
-
-
-if (cardSearch) {
-
-  cardSearch.addEventListener(
-    "input",
-    renderCards
-  );
-
-}
-
-
-/* =========================================================
-   MODAL EVENTS
-========================================================= */
-
-if (modalClose) {
-
-  modalClose.addEventListener(
-    "click",
-    closeModal
-  );
-
-}
-
-
-if (modalOverlay) {
-
-  modalOverlay.addEventListener(
-    "click",
-    closeModal
-  );
-
-}
-
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      event.key === "Escape"
-    ) {
-
-      closeModal();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
    START WEBSITE
 ========================================================= */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+function startSaiResonance() {
 
-    displayDailyChit();
+    const daily =
+        getDailyChit();
+
+    displayDailyChit(
+        daily
+    );
 
     updatePickButton();
 
     renderStories();
 
+    renderVahinis();
+
     renderTeachings();
 
     renderCards();
 
-    displayDailyWisdom();
+    displayWisdom();
 
-  }
-);
+    setupEvents();
+
+    setupMobileMenu();
+
+
+    if (CARDS.length !== 108) {
+
+        console.warn(
+            `Sai Resonance warning: expected 108 cards but found ${CARDS.length}.`
+        );
+
+    } else {
+
+        console.log(
+            "Sai Resonance: 108 cards loaded successfully."
+        );
+
+    }
+
+}
 
 
 /* =========================================================
-   DEVELOPMENT CHECK
+   DOM READY
 ========================================================= */
 
-console.log(
-  `Sai Resonance: ${CARDS.length} Chits loaded.`
+document.addEventListener(
+    "DOMContentLoaded",
+    startSaiResonance
 );
-
-
-if (
-  CARDS.length !== 108
-) {
-
-  console.warn(
-    `Warning: ${CARDS.length} Chits are currently loaded. Target: 108.`
-  );
-
-}
