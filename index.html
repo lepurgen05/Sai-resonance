@@ -3,175 +3,647 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sai Resonance — Chinna Katha, Sai literature, teachings, lessons and a daily Swami card.">
-  <title>Sai Resonance | One Thought. One Lesson. One Day.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <meta name="description"
+    content="Sai Resonance — Chinna Katha, Sai Literature, Teachings and Daily Wisdom.">
+
+  <title>Sai Resonance</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="top-glow"></div>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="Sai Resonance home">
-      <div class="brand-mark"><span>ॐ</span></div>
-      <div>
-        <strong>Sai Resonance</strong>
-        <small>One thought. One lesson. One day.</small>
-      </div>
-    </a>
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
-    <nav id="mainNav">
-      <a href="#home">Home</a>
-      <a href="#chinna-katha">Chinna Katha</a>
-      <a href="#literature">Sai Literature</a>
-      <a href="#teachings">Teachings</a>
-      <a href="#daily-card">Daily Card</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
 
-  <main id="home">
-    <section class="hero section-wrap">
-      <div class="hero-copy">
-        <div class="eyebrow"><span></span> A quiet place for reflection</div>
-        <h1>Let one small thought<br><em>stay with you today.</em></h1>
-        <p>Sai Resonance brings together Chinna Katha, Sai literature, simple teachings and a daily card inspired by the values associated with Sri Sathya Sai Baba.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#daily-card">Read today's card <span>→</span></a>
-          <a class="btn secondary" href="#chinna-katha">Explore Chinna Katha</a>
-        </div>
-      </div>
-      <div class="hero-art">
-        <div class="halo"></div>
-        <div class="art-card">
-          <div class="art-symbol">ॐ</div>
-          <div class="art-line"></div>
-          <p>Love All<br>Serve All</p>
-          <small>A daily space for reflection</small>
-        </div>
-      </div>
-    </section>
+  <!-- ================= TOP BAR ================= -->
 
-    <section class="daily-preview section-wrap" id="daily-card">
-      <div class="section-heading centered">
-        <span class="section-kicker">TODAY'S RESONANCE</span>
-        <h2>One day. One card.</h2>
-        <p id="todayDate"></p>
-      </div>
-      <article class="daily-card">
-        <div class="card-topline"><span>SAI RESONANCE • 108 CARDS</span><span id="cardNumber">CARD 01 / 108</span></div>
-        <div class="daily-card-content">
-          <div class="card-symbol">ॐ</div>
-          <div>
-            <div class="tag" id="dailyTag">Reflection</div>
-            <h3 id="dailyTitle">You Are Mine</h3>
-            <p id="dailyText">Let the heart become quiet enough to remember that love does not need to possess; it simply remains.</p>
-            <p class="card-note" id="dailyNote">A devotional reflection inspired by Sai values.</p>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <span id="dailyIndex">1 of 108</span>
-          <button class="text-btn" id="nextCard">Preview another card →</button>
-        </div>
-      </article>
-    </section>
-
-    <section class="cards-section section-wrap" id="chinna-katha">
-      <div class="section-heading">
-        <span class="section-kicker">STORIES WITH A PURPOSE</span>
-        <h2>Chinna Katha</h2>
-        <p>Small stories can carry large lessons. Read a short story, pause, and take one idea into your day.</p>
-      </div>
-      <div class="story-grid">
-        <article class="story-card featured">
-          <span class="story-label">Featured Story</span>
-          <h3>The Two Seeds</h3>
-          <p>Two seeds rested in the same soil. One feared the rain and remained closed; the other opened itself to the unknown. The lesson is simple: growth often begins where fear asks us to stay still.</p>
-          <button class="read-story" data-story="two-seeds">Read reflection →</button>
-        </article>
-        <article class="story-card">
-          <span class="story-label">Chinna Katha</span>
-          <h3>The Empty Cup</h3>
-          <p>A cup already filled cannot receive another drop. A mind crowded with pride struggles to receive a new lesson.</p>
-          <button class="read-story" data-story="empty-cup">Read reflection →</button>
-        </article>
-        <article class="story-card">
-          <span class="story-label">Chinna Katha</span>
-          <h3>The Lamp</h3>
-          <p>A lamp does not become dim by lighting another lamp. Service can multiply without reducing the light within us.</p>
-          <button class="read-story" data-story="lamp">Read reflection →</button>
-        </article>
-      </div>
-    </section>
-
-    <section class="literature-section section-wrap" id="literature">
-      <div class="section-heading">
-        <span class="section-kicker">READ • REFLECT • RETURN</span>
-        <h2>Sai Literature</h2>
-        <p>A simple library area for books, discourses, stories and study material. Add your PDFs and links here as the library grows.</p>
-      </div>
-      <div class="library-grid">
-        <article class="library-card"><div class="library-icon">01</div><h3>Books & Booklets</h3><p>Collect and organise literature for quiet reading and personal study.</p><a href="#" class="library-link">Open library →</a></article>
-        <article class="library-card"><div class="library-icon">02</div><h3>Discourses</h3><p>A dedicated space for selected talks, themes and reading notes.</p><a href="#" class="library-link">Explore discourses →</a></article>
-        <article class="library-card"><div class="library-icon">03</div><h3>Study Notes</h3><p>Short explanations of values, spiritual ideas and practical lessons.</p><a href="#" class="library-link">View notes →</a></article>
-      </div>
-    </section>
-
-    <section class="teachings-section section-wrap" id="teachings">
-      <div class="section-heading centered">
-        <span class="section-kicker">VALUES FOR EVERYDAY LIFE</span>
-        <h2>Teachings & Lessons</h2>
-        <p>Simple themes to return to when life becomes noisy.</p>
-      </div>
-      <div class="teaching-grid">
-        <article><span>01</span><h3>Love</h3><p>Let love become something practiced, not merely spoken.</p></article>
-        <article><span>02</span><h3>Truth</h3><p>Choose honesty in thought, word and action.</p></article>
-        <article><span>03</span><h3>Peace</h3><p>Make room for silence before reacting to the world.</p></article>
-        <article><span>04</span><h3>Right Conduct</h3><p>Let values guide ordinary choices, especially when nobody is watching.</p></article>
-        <article><span>05</span><h3>Service</h3><p>Turn concern for others into something useful and practical.</p></article>
-        <article><span>06</span><h3>Unity</h3><p>See the shared human value beneath differences of language, place and background.</p></article>
-      </div>
-    </section>
-
-    <section class="quote-section section-wrap">
-      <div class="quote-mark">“</div>
-      <blockquote>Be a good person first. Everything else follows.</blockquote>
-      <p>— A reflection on living with values</p>
-    </section>
-
-    <section class="about-section section-wrap" id="about">
-      <div>
-        <span class="section-kicker">ABOUT SAI RESONANCE</span>
-        <h2>A small digital space for a lasting thought.</h2>
-      </div>
-      <div>
-        <p>Sai Resonance is designed as a calm, accessible collection of stories, literature, teachings and daily reflections. The goal is not to overwhelm you with information, but to give you one meaningful idea to carry forward.</p>
-        <p class="disclaimer">The daily cards on this starter site are devotional reflections created for the project. They should not be treated as verbatim quotations from Sri Sathya Sai Baba unless a source is explicitly provided.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div><strong>Sai Resonance</strong><span>One thought. One lesson. One day.</span></div>
-      <div class="footer-links"><a href="#home">Home</a><a href="#daily-card">Daily Card</a><a href="#literature">Literature</a></div>
-      <p>Made as a quiet place for reading, reflection and service.</p>
-    </div>
-  </footer>
-
-  <div class="modal" id="storyModal" aria-hidden="true">
-    <div class="modal-backdrop" data-close="true"></div>
-    <div class="modal-box">
-      <button class="modal-close" id="modalClose">×</button>
-      <span class="section-kicker">REFLECTION</span>
-      <h2 id="modalTitle">The Two Seeds</h2>
-      <p id="modalText"></p>
-      <div class="modal-divider"></div>
-      <p><strong>Carry this today:</strong> Ask yourself what small act of love, truth or service you can do without waiting for recognition.</p>
-    </div>
+  <div class="topbar">
+    🪷 Sai Resonance · A quiet place for reflection, wisdom and love
   </div>
 
+
+  <!-- ================= HEADER ================= -->
+
+  <header class="header">
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        ॐ
+      </div>
+
+      <div>
+        <h1>Sai Resonance</h1>
+        <p>Chinna Katha · Literature · Teachings · Daily Wisdom</p>
+      </div>
+
+    </div>
+
+    <button class="menu-button" onclick="toggleMenu()">☰</button>
+
+    <nav id="navigation">
+
+      <a href="#home">Home</a>
+
+      <a href="#stories">
+        Chinna Katha
+      </a>
+
+      <a href="#teachings">
+        Teachings
+      </a>
+
+      <a href="#cards">
+        108 Cards
+      </a>
+
+      <a href="#literature">
+        Sai Literature
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- ================= MAIN ================= -->
+
+  <main>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          LOVE · TRUTH · PEACE · SERVICE
+        </span>
+
+        <h2>
+          A little story.<br>
+          <span>A great lesson.</span>
+        </h2>
+
+        <p>
+          Sai Resonance is a quiet digital space for
+          Chinna Katha, Sai literature, teachings,
+          reflections and daily wisdom inspired by
+          the message of Sri Sathya Sai Baba.
+        </p>
+
+        <div class="hero-buttons">
+
+          <button class="primary-button"
+                  onclick="openDailyCard()">
+            Today's Wisdom →
+          </button>
+
+          <a href="#stories"
+             class="secondary-button">
+            Explore Chinna Katha
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- DAILY CARD -->
+
+      <div class="hero-card">
+
+        <div class="card-header">
+
+          <span>SAI RESONANCE</span>
+
+          <span id="todayDate">
+            TODAY
+          </span>
+
+        </div>
+
+        <div class="card-symbol">
+          ❋
+        </div>
+
+        <h3 id="heroCardTitle">
+          Loading...
+        </h3>
+
+        <p id="heroCardText">
+        </p>
+
+        <div class="card-footer">
+
+          <span id="heroCardCategory">
+            DAILY WISDOM
+          </span>
+
+          <span id="heroCardNumber">
+            108
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= QUOTE ================= -->
+
+    <section class="quote-section">
+
+      <div class="quote-mark">
+        “
+      </div>
+
+      <div>
+
+        <p>
+          Love All; Serve All.
+        </p>
+
+        <small>
+          Help Ever; Hurt Never.
+        </small>
+
+      </div>
+
+      <a href="https://www.sathyasai.org/node/1126"
+         target="_blank">
+
+        Official source ↗
+
+      </a>
+
+    </section>
+
+
+
+    <!-- ================= CHINNA KATHA ================= -->
+
+    <section class="section"
+             id="stories">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="eyebrow">
+            CHINNA KATHA
+          </span>
+
+          <h2>
+            Stories that stay with you
+          </h2>
+
+          <p>
+            Short stories, Sai teachings and reflections
+            that carry a deeper lesson for everyday life.
+          </p>
+
+        </div>
+
+
+        <div class="filters">
+
+          <input
+            type="search"
+            id="storySearch"
+            placeholder="Search stories..."
+          >
+
+          <select id="storyFilter">
+
+            <option value="all">
+              All Stories
+            </option>
+
+            <option value="source">
+              Source Based
+            </option>
+
+            <option value="reflection">
+              Sai Inspired Reflection
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div id="storyGrid"
+           class="story-grid">
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= TEACHINGS ================= -->
+
+    <section class="section light-section"
+             id="teachings">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="eyebrow">
+            TEACHINGS & LESSONS
+          </span>
+
+          <h2>
+            Words to practise
+          </h2>
+
+          <p>
+            Read a teaching, understand its meaning,
+            and take it into daily life.
+          </p>
+
+        </div>
+
+        <input
+          class="wide-search"
+          type="search"
+          id="teachingSearch"
+          placeholder="Search teachings..."
+        >
+
+      </div>
+
+
+      <div id="teachingGrid"
+           class="teaching-grid">
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= DAILY WISDOM ================= -->
+
+    <section class="daily-section"
+             id="daily">
+
+      <div class="daily-container">
+
+        <div>
+
+          <span class="eyebrow">
+            TODAY · ONE CARD
+          </span>
+
+          <h2 id="dailyTitle">
+            Today's Wisdom
+          </h2>
+
+          <p id="dailyText">
+          </p>
+
+          <div class="daily-info">
+
+            <span id="dailyCategory">
+            </span>
+
+            <span id="dailyNumber">
+            </span>
+
+          </div>
+
+
+          <div class="hero-buttons">
+
+            <button
+              class="primary-button"
+              onclick="openDailyCard()">
+
+              Read Full Card
+
+            </button>
+
+            <button
+              class="outline-button"
+              onclick="copyDaily()">
+
+              Copy Wisdom
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="daily-symbol">
+
+          SAI
+
+          <span>♡</span>
+
+          WISDOM
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= 108 CARDS ================= -->
+
+    <section class="section"
+             id="cards">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="eyebrow">
+            THE 108-CARD BOOKLET
+          </span>
+
+          <h2>
+            Open a card
+          </h2>
+
+          <p>
+            One card is selected automatically every day.
+            You can also explore the complete collection.
+          </p>
+
+        </div>
+
+        <input
+          class="wide-search"
+          type="search"
+          id="cardSearch"
+          placeholder="Search 108 cards..."
+        >
+
+      </div>
+
+
+      <div id="cardGrid"
+           class="card-grid">
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= LITERATURE ================= -->
+
+    <section class="section literature"
+             id="literature">
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="eyebrow">
+            SAI LITERATURE
+          </span>
+
+          <h2>
+            A doorway into the literature
+          </h2>
+
+          <p>
+            Explore published collections and official
+            Sai literature.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="literature-grid">
+
+
+        <a
+          class="literature-card"
+          href="https://www.sathyasai.org/discourses-and-writings"
+          target="_blank">
+
+          <span>01</span>
+
+          <h3>
+            Sri Sathya Sai Speaks
+          </h3>
+
+          <p>
+            Published discourses and teachings.
+          </p>
+
+          <b>
+            Read collection ↗
+          </b>
+
+        </a>
+
+
+        <a
+          class="literature-card"
+          href="https://www.sathyasai.org/study-guides/divine-teachings"
+          target="_blank">
+
+          <span>02</span>
+
+          <h3>
+            Divine Teachings
+          </h3>
+
+          <p>
+            Study guides based on Sai's teachings.
+          </p>
+
+          <b>
+            Explore ↗
+          </b>
+
+        </a>
+
+
+        <a
+          class="literature-card"
+          href="https://www.sathyasai.org/education"
+          target="_blank">
+
+          <span>03</span>
+
+          <h3>
+            Human Values
+          </h3>
+
+          <p>
+            Truth, Right Conduct, Peace, Love and
+            Nonviolence.
+          </p>
+
+          <b>
+            Learn more ↗
+          </b>
+
+        </a>
+
+
+        <a
+          class="literature-card"
+          href="https://saispeaks.sathyasai.org/"
+          target="_blank">
+
+          <span>04</span>
+
+          <h3>
+            Sai Speaks Archive
+          </h3>
+
+          <p>
+            Searchable collection of published discourses.
+          </p>
+
+          <b>
+            Visit archive ↗
+          </b>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about"
+             id="about">
+
+      <div class="about-container">
+
+        <div>
+
+          <span class="eyebrow">
+            ABOUT SAI RESONANCE
+          </span>
+
+          <h2>
+            Read slowly.<br>
+            Remember deeply.<br>
+            Practise quietly.
+          </h2>
+
+        </div>
+
+
+        <p>
+
+          Sai Resonance is designed as a simple,
+          non-commercial educational and reflective
+          space.
+
+          <br><br>
+
+          Published quotations and stories are
+          identified and linked to their sources.
+          Original reflections are clearly labelled
+          as Sai-inspired reflections.
+
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <div>
+
+      <strong>
+        Sai Resonance
+      </strong>
+
+      <span>
+        For reflection, learning and love.
+      </span>
+
+    </div>
+
+    <div>
+
+      Source material:
+      Sri Sathya Sai International Organization
+      and Sathya Sai Speaks.
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- ================= MODAL ================= -->
+
+  <div id="modal"
+       class="modal">
+
+    <div class="modal-background"
+         onclick="closeModal()">
+    </div>
+
+    <div class="modal-content">
+
+      <button
+        class="close-button"
+        onclick="closeModal()">
+
+        ×
+
+      </button>
+
+      <span
+        class="eyebrow"
+        id="modalEyebrow">
+      </span>
+
+      <h2 id="modalTitle">
+      </h2>
+
+      <div id="modalBody">
+      </div>
+
+      <div
+        class="modal-source"
+        id="modalSource">
+      </div>
+
+    </div>
+
+  </div>
+
+
   <script src="script.js"></script>
+
 </body>
 </html>
