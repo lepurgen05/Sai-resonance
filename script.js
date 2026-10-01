@@ -1,6 +1,6 @@
 /* =========================================================
    SAI RESONANCE
-   Main JavaScript
+   COMPLETE script.js
 ========================================================= */
 
 
@@ -59,25 +59,25 @@ const CARDS = [
   },
 
   {
-    title: "Love all.",
+    title: "Love All.",
     text: "Let your words and actions make someone's day a little lighter.",
     category: "Teaching"
   },
 
   {
-    title: "Serve all.",
+    title: "Serve All.",
     text: "Service becomes meaningful when it is offered without expecting recognition.",
     category: "Teaching"
   },
 
   {
-    title: "Help ever.",
+    title: "Help Ever.",
     text: "Whenever you can genuinely help, do so with humility.",
     category: "Teaching"
   },
 
   {
-    title: "Hurt never.",
+    title: "Hurt Never.",
     text: "Before speaking, ask whether your words will heal or hurt.",
     category: "Teaching"
   },
@@ -692,17 +692,577 @@ const CARDS = [
 
 
 /* =========================================================
-   CHECK THAT COLLECTION IS 108
+   DAILY PICK LIMIT
+   3 EXTRA PICKS PER DAY
 ========================================================= */
 
-console.log(
-  "Sai Resonance Chits:",
-  CARDS.length
-);
+const DAILY_PICK_LIMIT = 3;
+
+const PICK_STORAGE_KEY =
+  "sai_resonance_daily_chit_picks";
+
+
+function getTodayString() {
+
+  const now = new Date();
+
+  return [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0")
+  ].join("-");
+
+}
+
+
+function getPickData() {
+
+  const today =
+    getTodayString();
+
+  const saved =
+    localStorage.getItem(
+      PICK_STORAGE_KEY
+    );
+
+
+  if (!saved) {
+
+    const freshData = {
+      date: today,
+      used: 0
+    };
+
+    localStorage.setItem(
+      PICK_STORAGE_KEY,
+      JSON.stringify(freshData)
+    );
+
+    return freshData;
+
+  }
+
+
+  try {
+
+    const data =
+      JSON.parse(saved);
+
+
+    if (
+      !data ||
+      data.date !== today
+    ) {
+
+      const freshData = {
+        date: today,
+        used: 0
+      };
+
+      localStorage.setItem(
+        PICK_STORAGE_KEY,
+        JSON.stringify(freshData)
+      );
+
+      return freshData;
+
+    }
+
+
+    return data;
+
+  } catch (error) {
+
+    const freshData = {
+      date: today,
+      used: 0
+    };
+
+    localStorage.setItem(
+      PICK_STORAGE_KEY,
+      JSON.stringify(freshData)
+    );
+
+    return freshData;
+
+  }
+
+}
+
+
+function savePickData(data) {
+
+  localStorage.setItem(
+    PICK_STORAGE_KEY,
+    JSON.stringify(data)
+  );
+
+}
 
 
 /* =========================================================
-   CHINNA KATHA LIBRARY
+   DAY OF YEAR
+========================================================= */
+
+function getDayOfYear(date = new Date()) {
+
+  const start =
+    new Date(
+      date.getFullYear(),
+      0,
+      0
+    );
+
+  const difference =
+    date - start;
+
+  const oneDay =
+    1000 *
+    60 *
+    60 *
+    24;
+
+  return Math.floor(
+    difference / oneDay
+  );
+
+}
+
+
+/* =========================================================
+   GET TODAY'S AUTOMATIC CHIT
+========================================================= */
+
+function getDailyChit() {
+
+  const day =
+    getDayOfYear();
+
+  const index =
+    (day - 1) % CARDS.length;
+
+
+  return {
+    card: CARDS[index],
+    index: index
+  };
+
+}
+
+
+/* =========================================================
+   DISPLAY TODAY'S CHIT
+========================================================= */
+
+function displayDailyChit() {
+
+  const daily =
+    getDailyChit();
+
+  const card =
+    daily.card;
+
+  const number =
+    daily.index + 1;
+
+
+  dailyTitle.textContent =
+    card.title;
+
+  dailyText.textContent =
+    card.text;
+
+  dailyCategory.textContent =
+    card.category.toUpperCase();
+
+  dailyNumber.textContent =
+    `Chit ${String(number).padStart(3, "0")} / 108`;
+
+
+  heroCardTitle.textContent =
+    card.title;
+
+  heroCardText.textContent =
+    card.text;
+
+  heroCardCategory.textContent =
+    card.category;
+
+  heroCardNumber.textContent =
+    `${String(number).padStart(2, "0")} / 108`;
+
+
+  const today =
+    new Date();
+
+
+  const dateText =
+    today.toLocaleDateString(
+      undefined,
+      {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }
+    );
+
+
+  chitDate.textContent =
+    dateText.toUpperCase();
+
+}
+
+
+/* =========================================================
+   PICK ANOTHER CHIT
+   MAXIMUM 3 TIMES PER DAY
+========================================================= */
+
+function pickAnotherChit() {
+
+  const data =
+    getPickData();
+
+
+  /* -----------------------------------------
+     LIMIT REACHED
+  ------------------------------------------ */
+
+  if (
+    data.used >= DAILY_PICK_LIMIT
+  ) {
+
+    updatePickButton();
+
+    showLimitMessage();
+
+    return;
+
+  }
+
+
+  /* -----------------------------------------
+     FIND RANDOM CHIT
+  ------------------------------------------ */
+
+  const daily =
+    getDailyChit();
+
+
+  let index;
+
+
+  do {
+
+    index =
+      Math.floor(
+        Math.random() * CARDS.length
+      );
+
+  } while (
+    CARDS.length > 1 &&
+    index === daily.index
+  );
+
+
+  const card =
+    CARDS[index];
+
+
+  /* -----------------------------------------
+     DISPLAY RANDOM CHIT
+  ------------------------------------------ */
+
+  dailyTitle.textContent =
+    card.title;
+
+  dailyText.textContent =
+    card.text;
+
+  dailyCategory.textContent =
+    card.category.toUpperCase();
+
+  dailyNumber.textContent =
+    `Chit ${String(index + 1).padStart(3, "0")} / 108`;
+
+
+  heroCardTitle.textContent =
+    card.title;
+
+  heroCardText.textContent =
+    card.text;
+
+  heroCardCategory.textContent =
+    card.category;
+
+  heroCardNumber.textContent =
+    `${String(index + 1).padStart(2, "0")} / 108`;
+
+
+  /* -----------------------------------------
+     CONSUME ONE DAILY CHANCE
+  ------------------------------------------ */
+
+  data.used++;
+
+  savePickData(data);
+
+
+  updatePickButton();
+
+}
+
+
+/* =========================================================
+   UPDATE PICK BUTTON
+========================================================= */
+
+function updatePickButton() {
+
+  const button =
+    document.getElementById(
+      "anotherChitButton"
+    );
+
+
+  if (!button) return;
+
+
+  const data =
+    getPickData();
+
+
+  const remaining =
+    DAILY_PICK_LIMIT -
+    data.used;
+
+
+  if (remaining > 0) {
+
+    button.disabled = false;
+
+    button.textContent =
+      `✦ Pick Another Chit (${remaining} left today)`;
+
+  } else {
+
+    button.disabled = true;
+
+    button.textContent =
+      "Come back tomorrow 🌸";
+
+  }
+
+}
+
+
+/* =========================================================
+   LIMIT MESSAGE
+========================================================= */
+
+function showLimitMessage() {
+
+  const message =
+    document.createElement("div");
+
+
+  message.className =
+    "chit-limit-message";
+
+
+  message.innerHTML =
+    `
+      <strong>Today's three picks are complete.</strong>
+      <br>
+      Come back tomorrow for three more Chit picks. 🌸
+    `;
+
+
+  const chitWrapper =
+    document.querySelector(
+      ".chit-wrapper"
+    );
+
+
+  if (!chitWrapper) return;
+
+
+  const oldMessage =
+    chitWrapper.querySelector(
+      ".chit-limit-message"
+    );
+
+
+  if (oldMessage) {
+
+    oldMessage.remove();
+
+  }
+
+
+  chitWrapper.appendChild(
+    message
+  );
+
+
+  setTimeout(() => {
+
+    message.remove();
+
+  }, 3000);
+
+}
+
+
+/* =========================================================
+   COPY DAILY CHIT
+========================================================= */
+
+function copyDailyChit() {
+
+  const title =
+    dailyTitle.textContent;
+
+  const text =
+    dailyText.textContent;
+
+  const category =
+    dailyCategory.textContent;
+
+
+  const content =
+`${title}
+
+${text}
+
+— Sai Resonance
+${category}`;
+
+
+  if (
+    navigator.clipboard &&
+    navigator.clipboard.writeText
+  ) {
+
+    navigator.clipboard
+      .writeText(content)
+      .then(() => {
+
+        showTemporaryButtonMessage(
+          "copyDailyButton",
+          "✓ Copied"
+        );
+
+      })
+      .catch(() => {
+
+        fallbackCopy(content);
+
+      });
+
+  } else {
+
+    fallbackCopy(content);
+
+  }
+
+}
+
+
+/* =========================================================
+   COPY FALLBACK
+========================================================= */
+
+function fallbackCopy(text) {
+
+  const textarea =
+    document.createElement(
+      "textarea"
+    );
+
+
+  textarea.value =
+    text;
+
+
+  textarea.style.position =
+    "fixed";
+
+  textarea.style.opacity =
+    "0";
+
+
+  document.body.appendChild(
+    textarea
+  );
+
+
+  textarea.select();
+
+
+  try {
+
+    document.execCommand(
+      "copy"
+    );
+
+    showTemporaryButtonMessage(
+      "copyDailyButton",
+      "✓ Copied"
+    );
+
+  } catch (error) {
+
+    alert(
+      "Please copy the Chit manually."
+    );
+
+  }
+
+
+  textarea.remove();
+
+}
+
+
+/* =========================================================
+   TEMPORARY BUTTON MESSAGE
+========================================================= */
+
+function showTemporaryButtonMessage(
+  buttonId,
+  message
+) {
+
+  const button =
+    document.getElementById(
+      buttonId
+    );
+
+
+  if (!button) return;
+
+
+  const original =
+    button.textContent;
+
+
+  button.textContent =
+    message;
+
+
+  setTimeout(() => {
+
+    button.textContent =
+      original;
+
+  }, 1500);
+
+}
+
+
+/* =========================================================
+   CHINNA KATHA
 ========================================================= */
 
 const STORIES = [
@@ -958,355 +1518,144 @@ const WISDOM = [
 ========================================================= */
 
 const heroCardTitle =
-  document.getElementById("heroCardTitle");
+  document.getElementById(
+    "heroCardTitle"
+  );
 
 const heroCardText =
-  document.getElementById("heroCardText");
+  document.getElementById(
+    "heroCardText"
+  );
 
 const heroCardCategory =
-  document.getElementById("heroCardCategory");
+  document.getElementById(
+    "heroCardCategory"
+  );
 
 const heroCardNumber =
-  document.getElementById("heroCardNumber");
+  document.getElementById(
+    "heroCardNumber"
+  );
 
 
 const dailyTitle =
-  document.getElementById("dailyTitle");
+  document.getElementById(
+    "dailyTitle"
+  );
 
 const dailyText =
-  document.getElementById("dailyText");
+  document.getElementById(
+    "dailyText"
+  );
 
 const dailyCategory =
-  document.getElementById("dailyCategory");
+  document.getElementById(
+    "dailyCategory"
+  );
 
 const dailyNumber =
-  document.getElementById("dailyNumber");
+  document.getElementById(
+    "dailyNumber"
+  );
 
 const chitDate =
-  document.getElementById("chitDate");
+  document.getElementById(
+    "chitDate"
+  );
 
 
 const storyGrid =
-  document.getElementById("storyGrid");
+  document.getElementById(
+    "storyGrid"
+  );
 
 const storySearch =
-  document.getElementById("storySearch");
+  document.getElementById(
+    "storySearch"
+  );
 
 const storyFilter =
-  document.getElementById("storyFilter");
+  document.getElementById(
+    "storyFilter"
+  );
 
 const storyCount =
-  document.getElementById("storyCount");
+  document.getElementById(
+    "storyCount"
+  );
 
 
 const teachingGrid =
-  document.getElementById("teachingGrid");
+  document.getElementById(
+    "teachingGrid"
+  );
 
 const teachingSearch =
-  document.getElementById("teachingSearch");
+  document.getElementById(
+    "teachingSearch"
+  );
 
 
 const cardGrid =
-  document.getElementById("cardGrid");
+  document.getElementById(
+    "cardGrid"
+  );
 
 const cardSearch =
-  document.getElementById("cardSearch");
+  document.getElementById(
+    "cardSearch"
+  );
 
 
 const wisdomText =
-  document.getElementById("wisdomText");
+  document.getElementById(
+    "wisdomText"
+  );
 
 const wisdomCategory =
-  document.getElementById("wisdomCategory");
+  document.getElementById(
+    "wisdomCategory"
+  );
 
 
 const modal =
-  document.getElementById("contentModal");
-
-const modalOverlay =
-  document.getElementById("modalOverlay");
-
-const modalClose =
-  document.getElementById("modalClose");
-
-const modalEyebrow =
-  document.getElementById("modalEyebrow");
-
-const modalTitle =
-  document.getElementById("modalTitle");
-
-const modalBody =
-  document.getElementById("modalBody");
-
-const modalSource =
-  document.getElementById("modalSource");
-
-
-/* =========================================================
-   DATE HELPERS
-========================================================= */
-
-function getDayOfYear(date = new Date()) {
-
-  const start =
-    new Date(date.getFullYear(), 0, 0);
-
-  const diff =
-    date - start;
-
-  const oneDay =
-    1000 * 60 * 60 * 24;
-
-  return Math.floor(diff / oneDay);
-}
-
-
-/* =========================================================
-   DAILY CHIT
-========================================================= */
-
-function getDailyChit() {
-
-  const day =
-    getDayOfYear();
-
-  const index =
-    (day - 1) % CARDS.length;
-
-  return {
-    card: CARDS[index],
-    index
-  };
-
-}
-
-
-function displayDailyChit() {
-
-  const daily =
-    getDailyChit();
-
-  const card =
-    daily.card;
-
-  const number =
-    daily.index + 1;
-
-
-  dailyTitle.textContent =
-    card.title;
-
-  dailyText.textContent =
-    card.text;
-
-  dailyCategory.textContent =
-    card.category.toUpperCase();
-
-  dailyNumber.textContent =
-    `Chit ${String(number).padStart(2, "0")} / 108`;
-
-
-  heroCardTitle.textContent =
-    card.title;
-
-  heroCardText.textContent =
-    card.text;
-
-  heroCardCategory.textContent =
-    card.category;
-
-  heroCardNumber.textContent =
-    `${String(number).padStart(2, "0")} / 108`;
-
-
-  const today =
-    new Date();
-
-  const dateText =
-    today.toLocaleDateString(
-      undefined,
-      {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      }
-    );
-
-  chitDate.textContent =
-    dateText.toUpperCase();
-
-}
-
-
-/* =========================================================
-   PICK ANOTHER CHIT
-========================================================= */
-
-function pickAnotherChit() {
-
-  const index =
-    Math.floor(
-      Math.random() * CARDS.length
-    );
-
-  const card =
-    CARDS[index];
-
-
-  dailyTitle.textContent =
-    card.title;
-
-  dailyText.textContent =
-    card.text;
-
-  dailyCategory.textContent =
-    card.category.toUpperCase();
-
-  dailyNumber.textContent =
-    `Chit ${String(index + 1).padStart(2, "0")} / 108`;
-
-
-  heroCardTitle.textContent =
-    card.title;
-
-  heroCardText.textContent =
-    card.text;
-
-  heroCardCategory.textContent =
-    card.category;
-
-  heroCardNumber.textContent =
-    `${String(index + 1).padStart(2, "0")} / 108`;
-
-}
-
-
-/* =========================================================
-   COPY DAILY CHIT
-========================================================= */
-
-function copyDailyChit() {
-
-  const title =
-    dailyTitle.textContent;
-
-  const text =
-    dailyText.textContent;
-
-  const category =
-    dailyCategory.textContent;
-
-
-  const content =
-`${title}
-
-${text}
-
-— Sai Resonance
-${category}`;
-
-
-  if (
-    navigator.clipboard &&
-    navigator.clipboard.writeText
-  ) {
-
-    navigator.clipboard
-      .writeText(content)
-      .then(() => {
-
-        showTemporaryButtonMessage(
-          "copyDailyButton",
-          "✓ Copied"
-        );
-
-      })
-      .catch(() => {
-
-        fallbackCopy(content);
-
-      });
-
-  } else {
-
-    fallbackCopy(content);
-
-  }
-
-}
-
-
-/* =========================================================
-   FALLBACK COPY
-========================================================= */
-
-function fallbackCopy(text) {
-
-  const textarea =
-    document.createElement("textarea");
-
-  textarea.value =
-    text;
-
-  document.body.appendChild(
-    textarea
+  document.getElementById(
+    "contentModal"
   );
 
-  textarea.select();
+const modalOverlay =
+  document.getElementById(
+    "modalOverlay"
+  );
 
-  try {
+const modalClose =
+  document.getElementById(
+    "modalClose"
+  );
 
-    document.execCommand("copy");
+const modalEyebrow =
+  document.getElementById(
+    "modalEyebrow"
+  );
 
-    showTemporaryButtonMessage(
-      "copyDailyButton",
-      "✓ Copied"
-    );
+const modalTitle =
+  document.getElementById(
+    "modalTitle"
+  );
 
-  } catch (error) {
+const modalBody =
+  document.getElementById(
+    "modalBody"
+  );
 
-    alert("Please copy the Chit manually.");
-
-  }
-
-  textarea.remove();
-
-}
-
-
-/* =========================================================
-   TEMPORARY BUTTON MESSAGE
-========================================================= */
-
-function showTemporaryButtonMessage(
-  buttonId,
-  message
-) {
-
-  const button =
-    document.getElementById(buttonId);
-
-  if (!button) return;
-
-
-  const original =
-    button.textContent;
-
-  button.textContent =
-    message;
-
-  setTimeout(() => {
-
-    button.textContent =
-      original;
-
-  }, 1500);
-
-}
+const modalSource =
+  document.getElementById(
+    "modalSource"
+  );
 
 
 /* =========================================================
-   RENDER STORIES
+   RENDER CHINNA KATHA
 ========================================================= */
 
 function renderStories() {
@@ -1321,34 +1670,38 @@ function renderStories() {
 
 
   const filtered =
-    STORIES.filter(story => {
+    STORIES.filter(
+      story => {
 
-      const matchesFilter =
-        filter === "all" ||
-        story.type === filter;
-
-
-      const searchable =
-        (
-          story.title +
-          " " +
-          story.description +
-          " " +
-          story.lesson
-        ).toLowerCase();
+        const matchesFilter =
+          filter === "all" ||
+          story.type === filter;
 
 
-      const matchesSearch =
-        !query ||
-        searchable.includes(query);
+        const searchable =
+          (
+            story.title +
+            " " +
+            story.description +
+            " " +
+            story.lesson
+          ).toLowerCase();
 
 
-      return (
-        matchesFilter &&
-        matchesSearch
-      );
+        const matchesSearch =
+          !query ||
+          searchable.includes(
+            query
+          );
 
-    });
+
+        return (
+          matchesFilter &&
+          matchesSearch
+        );
+
+      }
+    );
 
 
   storyGrid.innerHTML = "";
@@ -1363,6 +1716,7 @@ function renderStories() {
       </div>
       `;
 
+
     storyCount.textContent =
       "0 Stories";
 
@@ -1375,50 +1729,64 @@ function renderStories() {
     `${filtered.length} Stories`;
 
 
-  filtered.forEach(story => {
+  filtered.forEach(
+    story => {
 
-    const article =
-      document.createElement("article");
-
-    article.className =
-      "story-card";
-
-
-    const typeLabel =
-      story.type === "source"
-        ? "Source Based"
-        : "Sai Resonance Reflection";
+      const article =
+        document.createElement(
+          "article"
+        );
 
 
-    article.innerHTML =
-      `
-      <span class="story-type">
-        ${typeLabel}
-      </span>
-
-      <h3>
-        ${escapeHTML(story.title)}
-      </h3>
-
-      <p>
-        ${escapeHTML(story.description)}
-      </p>
-
-      <div class="story-lesson">
-        Lesson: ${escapeHTML(story.lesson)}
-      </div>
-      `;
+      article.className =
+        "story-card";
 
 
-    article.addEventListener(
-      "click",
-      () => openStory(story)
-    );
+      const typeLabel =
+        story.type === "source"
+          ? "Source Based"
+          : "Sai Resonance Reflection";
 
 
-    storyGrid.appendChild(article);
+      article.innerHTML =
+        `
+        <span class="story-type">
+          ${typeLabel}
+        </span>
 
-  });
+        <h3>
+          ${escapeHTML(
+            story.title
+          )}
+        </h3>
+
+        <p>
+          ${escapeHTML(
+            story.description
+          )}
+        </p>
+
+        <div class="story-lesson">
+          Lesson:
+          ${escapeHTML(
+            story.lesson
+          )}
+        </div>
+        `;
+
+
+      article.addEventListener(
+        "click",
+        () => openStory(story)
+      );
+
+
+      storyGrid.appendChild(
+        article
+      );
+
+    }
+  );
 
 }
 
@@ -1442,12 +1810,16 @@ function openStory(story) {
   modalBody.innerHTML =
     `
     <p>
-      ${escapeHTML(story.description)}
+      ${escapeHTML(
+        story.description
+      )}
     </p>
 
     <p>
       <strong>Lesson:</strong>
-      ${escapeHTML(story.lesson)}
+      ${escapeHTML(
+        story.lesson
+      )}
     </p>
     `;
 
@@ -1492,22 +1864,26 @@ function renderTeachings() {
 
 
   const filtered =
-    TEACHINGS.filter(teaching => {
+    TEACHINGS.filter(
+      teaching => {
 
-      const searchable =
-        (
-          teaching.title +
-          " " +
-          teaching.text
-        ).toLowerCase();
+        const searchable =
+          (
+            teaching.title +
+            " " +
+            teaching.text
+          ).toLowerCase();
 
 
-      return (
-        !query ||
-        searchable.includes(query)
-      );
+        return (
+          !query ||
+          searchable.includes(
+            query
+          )
+        );
 
-    });
+      }
+    );
 
 
   teachingGrid.innerHTML = "";
@@ -1531,7 +1907,10 @@ function renderTeachings() {
     (teaching, index) => {
 
       const article =
-        document.createElement("article");
+        document.createElement(
+          "article"
+        );
+
 
       article.className =
         "teaching-card";
@@ -1540,15 +1919,21 @@ function renderTeachings() {
       article.innerHTML =
         `
         <span class="teaching-number">
-          ${String(index + 1).padStart(2, "0")}
+          ${String(
+            index + 1
+          ).padStart(2, "0")}
         </span>
 
         <h3>
-          ${escapeHTML(teaching.title)}
+          ${escapeHTML(
+            teaching.title
+          )}
         </h3>
 
         <p>
-          ${escapeHTML(teaching.text)}
+          ${escapeHTML(
+            teaching.text
+          )}
         </p>
         `;
 
@@ -1576,29 +1961,35 @@ function renderCards() {
 
 
   const filtered =
-    CARDS.map(
-      (card, index) => ({
-        ...card,
-        index
-      })
-    ).filter(card => {
+    CARDS
+      .map(
+        (card, index) => ({
+          ...card,
+          index
+        })
+      )
+      .filter(
+        card => {
 
-      const searchable =
-        (
-          card.title +
-          " " +
-          card.text +
-          " " +
-          card.category
-        ).toLowerCase();
+          const searchable =
+            (
+              card.title +
+              " " +
+              card.text +
+              " " +
+              card.category
+            ).toLowerCase();
 
 
-      return (
-        !query ||
-        searchable.includes(query)
+          return (
+            !query ||
+            searchable.includes(
+              query
+            )
+          );
+
+        }
       );
-
-    });
 
 
   cardGrid.innerHTML = "";
@@ -1618,40 +2009,53 @@ function renderCards() {
   }
 
 
-  filtered.forEach(card => {
+  filtered.forEach(
+    card => {
 
-    const article =
-      document.createElement("article");
-
-    article.className =
-      "daily-card";
-
-
-    article.innerHTML =
-      `
-      <span class="daily-card-number">
-        CHIT ${String(card.index + 1).padStart(3, "0")}
-      </span>
-
-      <h3>
-        ${escapeHTML(card.title)}
-      </h3>
-
-      <p>
-        ${escapeHTML(card.text)}
-      </p>
-      `;
+      const article =
+        document.createElement(
+          "article"
+        );
 
 
-    article.addEventListener(
-      "click",
-      () => openCard(card)
-    );
+      article.className =
+        "daily-card";
 
 
-    cardGrid.appendChild(article);
+      article.innerHTML =
+        `
+        <span class="daily-card-number">
+          CHIT ${String(
+            card.index + 1
+          ).padStart(3, "0")}
+        </span>
 
-  });
+        <h3>
+          ${escapeHTML(
+            card.title
+          )}
+        </h3>
+
+        <p>
+          ${escapeHTML(
+            card.text
+          )}
+        </p>
+        `;
+
+
+      article.addEventListener(
+        "click",
+        () => openCard(card)
+      );
+
+
+      cardGrid.appendChild(
+        article
+      );
+
+    }
+  );
 
 }
 
@@ -1673,7 +2077,9 @@ function openCard(card) {
   modalBody.innerHTML =
     `
     <p>
-      ${escapeHTML(card.text)}
+      ${escapeHTML(
+        card.text
+      )}
     </p>
     `;
 
@@ -1693,12 +2099,16 @@ function openCard(card) {
 
 function openModal() {
 
-  modal.classList.add("active");
+  modal.classList.add(
+    "active"
+  );
+
 
   modal.setAttribute(
     "aria-hidden",
     "false"
   );
+
 
   document.body.classList.add(
     "modal-open"
@@ -1709,12 +2119,16 @@ function openModal() {
 
 function closeModal() {
 
-  modal.classList.remove("active");
+  modal.classList.remove(
+    "active"
+  );
+
 
   modal.setAttribute(
     "aria-hidden",
     "true"
   );
+
 
   document.body.classList.remove(
     "modal-open"
@@ -1732,8 +2146,11 @@ function displayDailyWisdom() {
   const day =
     getDayOfYear();
 
+
   const index =
-    (day - 1) % WISDOM.length;
+    (day - 1) %
+    WISDOM.length;
+
 
   const item =
     WISDOM[index];
@@ -1742,6 +2159,7 @@ function displayDailyWisdom() {
   wisdomText.textContent =
     item.text;
 
+
   wisdomCategory.textContent =
     item.category;
 
@@ -1749,16 +2167,20 @@ function displayDailyWisdom() {
 
 
 /* =========================================================
-   ESCAPE HTML
+   HTML ESCAPE
 ========================================================= */
 
 function escapeHTML(value) {
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
+
 
   div.textContent =
     value;
+
 
   return div.innerHTML;
 
@@ -1780,7 +2202,10 @@ const mobileNav =
   );
 
 
-if (mobileMenuButton) {
+if (
+  mobileMenuButton &&
+  mobileNav
+) {
 
   mobileMenuButton.addEventListener(
     "click",
@@ -1790,58 +2215,56 @@ if (mobileMenuButton) {
         "active"
       );
 
+
       const isOpen =
         mobileNav.classList.contains(
           "active"
         );
 
+
       mobileMenuButton.textContent =
-        isOpen ? "×" : "☰";
+        isOpen
+          ? "×"
+          : "☰";
 
     }
   );
 
-}
-
-
-/* Close mobile menu after clicking */
-
-if (mobileNav) {
 
   mobileNav
     .querySelectorAll("a")
-    .forEach(link => {
+    .forEach(
+      link => {
 
-      link.addEventListener(
-        "click",
-        () => {
+        link.addEventListener(
+          "click",
+          () => {
 
-          mobileNav.classList.remove(
-            "active"
-          );
+            mobileNav.classList.remove(
+              "active"
+            );
 
-          mobileMenuButton.textContent =
-            "☰";
+            mobileMenuButton.textContent =
+              "☰";
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
 
 }
 
 
 /* =========================================================
-   EVENT LISTENERS
+   BUTTON EVENTS
 ========================================================= */
-
-
-/* Daily Chit */
 
 const anotherChitButton =
   document.getElementById(
     "anotherChitButton"
   );
+
 
 if (anotherChitButton) {
 
@@ -1853,12 +2276,11 @@ if (anotherChitButton) {
 }
 
 
-/* Copy */
-
 const copyDailyButton =
   document.getElementById(
     "copyDailyButton"
   );
+
 
 if (copyDailyButton) {
 
@@ -1870,7 +2292,9 @@ if (copyDailyButton) {
 }
 
 
-/* Story search */
+/* =========================================================
+   SEARCH EVENTS
+========================================================= */
 
 if (storySearch) {
 
@@ -1880,6 +2304,7 @@ if (storySearch) {
   );
 
 }
+
 
 if (storyFilter) {
 
@@ -1891,8 +2316,6 @@ if (storyFilter) {
 }
 
 
-/* Teaching search */
-
 if (teachingSearch) {
 
   teachingSearch.addEventListener(
@@ -1902,8 +2325,6 @@ if (teachingSearch) {
 
 }
 
-
-/* Card search */
 
 if (cardSearch) {
 
@@ -1915,7 +2336,9 @@ if (cardSearch) {
 }
 
 
-/* Modal */
+/* =========================================================
+   MODAL EVENTS
+========================================================= */
 
 if (modalClose) {
 
@@ -1926,6 +2349,7 @@ if (modalClose) {
 
 }
 
+
 if (modalOverlay) {
 
   modalOverlay.addEventListener(
@@ -1935,8 +2359,6 @@ if (modalOverlay) {
 
 }
 
-
-/* ESC key */
 
 document.addEventListener(
   "keydown",
@@ -1964,6 +2386,8 @@ document.addEventListener(
 
     displayDailyChit();
 
+    updatePickButton();
+
     renderStories();
 
     renderTeachings();
@@ -1980,10 +2404,17 @@ document.addEventListener(
    DEVELOPMENT CHECK
 ========================================================= */
 
-if (CARDS.length !== 108) {
+console.log(
+  `Sai Resonance: ${CARDS.length} Chits loaded.`
+);
+
+
+if (
+  CARDS.length !== 108
+) {
 
   console.warn(
-    `Sai Resonance currently has ${CARDS.length} Chits. The target is 108.`
+    `Warning: ${CARDS.length} Chits are currently loaded. Target: 108.`
   );
 
 }
